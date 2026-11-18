@@ -1,166 +1,30 @@
 "use client";
+import { useState } from "react";
 
-import { useEffect, useRef, useState } from "react";
+const projects: [string, string, string, string, string[]][] = [
+  ["01", "Data Mining · 2026", "Pemodelan Prediksi Kepuasan Kerja Karyawan", "Membangun model prediktif employee attrition dengan Gradient Boosting Regression dan smoothed bootstrap oversampling, mengevaluasi MAE, RMSE, R-Squared, serta feature importance tiap divisi.", ["MATLAB", "Gradient Boosting", "Bootstrap Oversampling", "Feature Importance"]],
+  ["02", "Software Development · 2026", "Pengembangan Aplikasi ALTAR (Front-End)", "Mengembangkan antarmuka responsif untuk asisten dosen dengan React, Next.js, TypeScript, dan Tailwind CSS; mencakup QR check-in, presensi, jadwal mengajar, serta pemantauan kelas.", ["Next.js", "React", "TypeScript", "Tailwind CSS", "REST API"]],
+  ["03", "Front-End Programming · 2025", "Pengembangan Platform Pembelajaran Trainity", "Membangun platform pembelajaran berbasis Next.js: autentikasi, katalog kursus, pembelian kelas, pelacakan progres, sertifikat, dan panel admin pengelolaan materi.", ["Next.js", "React", "Tailwind CSS", "Admin Dashboard"]],
+  ["04", "Mobile Programming · 2025", "Pengembangan Aplikasi Mobile Learra", "Mengembangkan aplikasi asuransi Flutter dengan autentikasi dan integrasi API untuk pembelian polis, pembayaran premi, dan pengajuan klaim.", ["Flutter", "Dart", "API Integration", "Mobile UI/UX"]],
+];
+const skills = [["⌘", "Bahasa Pemrograman", ["Python", "SQL (Oracle)", "JavaScript", "TypeScript", "Java", "Dart", "MATLAB"]], ["◫", "Pengembangan Web & Mobile", ["HTML", "CSS", "MongoDB", "Express.js", "React", "Next.js", "Flutter", "Tailwind CSS"]], ["◌", "Data Science & Basis Data", ["Data Preprocessing", "Data Analysis", "Evaluasi Model", "Perancangan ERD", "Normalisasi (3NF)"]], [">_", "Sistem Operasi & Tools", ["Linux (Ubuntu)", "Linux (Red Hat)", "Git", "GitHub", "Langflow"]]];
+const certificates = [["M", "MongoDB · 2026", "MongoDB Node.js Developer Path for SmartBridge", "Completion"], ["SF", "Salesforce · 2026", "Salesforce Talent Accelerator Program", "Completion"], ["IBM", "IBM SkillsBuild x Hacktiv8 · 2026", "AI Agent for Programming & Data Analysis", "Accomplishment"], ["G", "Google · 2026", "Gemini Certified Student", "Certified"], ["RH", "Red Hat Academy · 2025", "Red Hat System Administration I & II", "Attendance"]];
+function SectionTitle({ number, title }: { number: string; title: string }) { return <div className="section-title"><p>{number}</p><h2>{title}</h2></div>; }
+function Chip({ children }: { children: React.ReactNode }) { return <span className="chip">{children}</span>; }
 
 export default function Home() {
-  const canvasRef = useRef<HTMLCanvasElement | null>(null);
   const [copied, setCopied] = useState(false);
-
-  const emailAddress = "c.charlesswork@gmail.com"; 
-
-  const handleCopyEmail = () => {
-    navigator.clipboard.writeText(emailAddress);
-    setCopied(true);
-    setTimeout(() => setCopied(false), 2200);
-  };
-
-  useEffect(() => {
-    const canvas = canvasRef.current;
-    if (!canvas) return;
-    const ctx = canvas.getContext("2d");
-    if (!ctx) return;
-
-    let animationFrameId: number;
-    let time = 0;
-
-    const resize = () => {
-      canvas.width = window.innerWidth;
-      canvas.height = window.innerHeight;
-    };
-
-    resize();
-    window.addEventListener("resize", resize);
-
-    const waves = [
-      {
-        amplitude: 55,
-        frequency: 0.0022,
-        speed: 0.012,
-        yOffset: 0.68,
-        colorTop: "rgba(159, 170, 203, 0.45)", // #9FAACB
-        colorBottom: "rgba(35, 101, 165, 0.25)", // #2365A5
-      },
-      {
-        amplitude: 45,
-        frequency: 0.0031,
-        speed: -0.015,
-        yOffset: 0.73,
-        colorTop: "rgba(168, 143, 163, 0.42)", // #A88FA3
-        colorBottom: "rgba(207, 194, 203, 0.35)", // #CFC2CB
-      },
-      {
-        amplitude: 65,
-        frequency: 0.0018,
-        speed: 0.009,
-        yOffset: 0.78,
-        colorTop: "rgba(35, 101, 165, 0.35)", // #2365A5
-        colorBottom: "rgba(159, 170, 203, 0.55)", // #9FAACB
-      },
-    ];
-
-    const render = () => {
-      time += 1;
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
-
-      waves.forEach((wave, index) => {
-        ctx.beginPath();
-        const baseHeight = canvas.height * wave.yOffset;
-        ctx.moveTo(0, canvas.height);
-
-        for (let x = 0; x <= canvas.width; x += 8) {
-          const y =
-            baseHeight +
-            Math.sin(x * wave.frequency + time * wave.speed + index) *
-            wave.amplitude +
-            Math.cos(x * wave.frequency * 0.6 - time * wave.speed) *
-            (wave.amplitude * 0.5);
-          ctx.lineTo(x, y);
-        }
-
-        ctx.lineTo(canvas.width, canvas.height);
-        ctx.closePath();
-
-        const gradient = ctx.createLinearGradient(
-          0,
-          baseHeight - wave.amplitude,
-          0,
-          canvas.height
-        );
-        gradient.addColorStop(0, wave.colorTop);
-        gradient.addColorStop(1, wave.colorBottom);
-
-        ctx.fillStyle = gradient;
-        ctx.fill();
-      });
-
-      animationFrameId = requestAnimationFrame(render);
-    };
-
-    render();
-
-    return () => {
-      cancelAnimationFrame(animationFrameId);
-      window.removeEventListener("resize", resize);
-    };
-  }, []);
-
-  return (
-    <main className="relative flex min-h-screen flex-col items-center justify-center overflow-hidden bg-[#F4F1F2] px-6 text-center select-none">
-      <canvas
-        ref={canvasRef}
-        aria-hidden="true"
-        className="pointer-events-none absolute inset-0 h-full w-full blur-2xl"
-      />
-
-      <div
-        aria-hidden="true"
-        className="pointer-events-none absolute inset-0 bg-gradient-to-b from-[#F4F1F2] via-[#F4F1F2]/75 to-transparent"
-      />
-
-      <div className="relative z-10 -mt-16 flex max-w-2xl flex-col items-center">
-        <span className="mb-5 inline-flex items-center gap-2 rounded-full border border-[#CFC2CB] bg-white/60 px-3.5 py-1 text-xs font-medium text-[#2365A5] backdrop-blur-md">
-          <span className="h-2 w-2 rounded-full bg-[#A88FA3]" />
-          Work in Progress
-        </span>
-
-        <h1 className="text-4xl font-bold tracking-tight text-[#2365A5] sm:text-5xl md:text-6xl">
-          Portfolio sedang dibuat.
-        </h1>
-
-        <p className="mt-4 max-w-lg text-sm leading-relaxed text-[#2365A5]/75 sm:text-base">
-          Website ini masih dalam tahap pengerjaan dan penyusunan karya. Untuk
-          sementara waktu, silakan cek aktivitas atau hubungi saya melalui
-          tautan berikut.
-        </p>
-
-        <div className="mt-8 flex flex-wrap items-center justify-center gap-3">
-          <a
-            href="https://github.com/LessThanNone"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="group inline-flex items-center gap-2 rounded-xl bg-[#2365A5] px-5 py-3 text-sm font-medium text-[#F4F1F2] shadow-[0_8px_24px_rgba(35,101,165,0.22)] transition-all hover:bg-[#1b5287] active:scale-[0.98]"
-          >
-            <span>GitHub</span>
-          </a>
-
-          <a
-            href="https://linkedin.com/in/charlesswork"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 rounded-xl border border-[#9FAACB]/50 bg-[#9FAACB]/25 px-5 py-3 text-sm font-medium text-[#2365A5] backdrop-blur-md transition-all hover:border-[#2365A5]/40 hover:bg-[#9FAACB]/40 active:scale-[0.98]"
-          >
-            LinkedIn
-          </a>
-
-          <a
-            href={`mailto:${emailAddress}`}
-            onClick={handleCopyEmail}
-            className="inline-flex items-center gap-2 rounded-xl border border-[#A88FA3]/50 bg-[#A88FA3]/20 px-5 py-3 text-sm font-medium text-[#2365A5] backdrop-blur-md transition-all hover:border-[#A88FA3] hover:bg-[#A88FA3]/35 active:scale-[0.98]"
-          >
-            {copied ? "Email Tersalin!" : "Contact Email"}
-          </a>
-        </div>
-      </div>
-    </main>
-  );
+  const copyEmail = async () => { await navigator.clipboard.writeText("c.charlesswork@gmail.com"); setCopied(true); window.setTimeout(() => setCopied(false), 2000); };
+  return <>
+    <header className="site-header"><div className="nav-wrap"><a className="brand" href="#beranda"><b>C</b><span><strong>CHARLESS</strong><small>WEB & DATA ENGINEERING</small></span></a><span className="availability"><i /> Terbuka untuk Magang & Kolaborasi</span><nav aria-label="Navigasi utama">{[["Tentang", "tentang"], ["Pengalaman", "pengalaman"], ["Proyek", "proyek"], ["Keahlian", "keahlian"], ["Sertifikasi", "sertifikat"], ["Kontak", "kontak"]].map(([label, id]) => <a key={id} href={`#${id}`}>{label}</a>)}</nav><a className="contact-cta" href="#kontak">Hubungi Saya ↗</a></div></header>
+    <main id="beranda">
+      <section className="hero content"><div className="hero-copy"><p className="eyebrow">PORTOFOLIO · 2026</p><h1>Membangun solusi digital yang <em>bermakna.</em></h1><p className="lede">Mahasiswa Teknik Informatika yang berfokus pada pengembangan web, aplikasi mobile, dan pengolahan data. Menyatukan ketelitian teknis dengan pengalaman digital yang manusiawi.</p><div className="hero-actions"><a className="button primary" href="#proyek">Lihat Proyek ↓</a><a className="button secondary" href="#tentang">Kenalan Lebih Dekat</a></div></div><aside className="profile-card"><div className="profile-monogram">C</div><p className="eyebrow">SAAT INI</p><h2>Teknik Informatika</h2><p>Universitas Tarumanagara</p><div className="profile-grid"><span><b>5</b><small>SEMESTER</small></span><span><b>3.93</b><small>IPK / 4.00</small></span><span><b>4+</b><small>PROYEK</small></span></div></aside></section>
+      <section id="tentang" className="content section about"><SectionTitle number="01 · TENTANG SAYA" title="Belajar dengan rasa ingin tahu, berkarya dengan ketelitian." /><div className="about-grid"><div><p className="body-large">Saya Charless, mahasiswa S1 Teknik Informatika di Universitas Tarumanagara. Saya menikmati proses membongkar masalah kompleks menjadi solusi digital yang jelas, terukur, dan mudah digunakan.</p><p>Saat ini saya memperdalam pengembangan web dan mobile, pemodelan data, serta fondasi sistem basis data. Saya juga aktif sebagai asisten dosen dan dalam organisasi kampus.</p></div><div className="facts">{[["Program Studi", "S1 Teknik Informatika", "Universitas Tarumanagara"], ["Masa Studi", "Semester 5", "2024 – 2028 (Perkiraan)"], ["Indeks Prestasi", "3.93 / 4.00", "Predikat Sangat Memuaskan"], ["Kompetensi Utama", "Web, Mobile & Data", "Full-Stack & Data Science"]].map(([label, value, note]) => <article key={label}><small>{label}</small><b>{value}</b><span>{note}</span></article>)}</div></div></section>
+      <section id="pengalaman" className="content section"><SectionTitle number="02 · PENGALAMAN & ORGANISASI" title="Pengalaman Asisten Dosen & Kepemimpinan Kampus" /><div className="experience-grid"><div><h3 className="subheading">◌ Pengalaman Asisten Dosen — Universitas Tarumanagara</h3>{[["Asisten Dosen — Big Data", "Agustus 2026 – Desember 2026", "Membimbing praktikum 27 mahasiswa lintas jurusan dalam pemrosesan dan analisis big data menggunakan Python, serta mengevaluasi tugas mingguan."], ["Asisten Dosen — Database Systems", "Agustus 2026 – Desember 2026", "Mengajar praktikum untuk 43 mahasiswa terkait perancangan basis data relasional, normalisasi, dan kueri SQL Oracle."], ["Asisten Dosen — Algebra and Discrete Mathematics", "Februari 2026 – Juni 2026", "Mengajar dan membimbing 84 mahasiswa dalam dua kelas, mengevaluasi responsi mingguan, dan berkoordinasi untuk standardisasi penilaian."]].map(([title, date, text]) => <article className="experience-card" key={title}><div><h3>{title}</h3><Chip>{date}</Chip></div><p>{text}</p></article>)}</div><div><h3 className="subheading">◉ Pengalaman Organisasi & Kepanitiaan</h3><article className="experience-card organization"><h3>Tarumanagara English Club (TEC)</h3><p className="role">ANGGOTA UKM · 2024 – SEKARANG</p><ul><li>Koordinator Divisi Perlengkapan & Konsumsi pada National English Competition 2025.</li><li>Anggota divisi pada TEC Anniversary dan TOEFL Test.</li></ul></article><article className="experience-card organization"><h3>BEM FTI Universitas Tarumanagara</h3><p className="role">PANITIA ACARA · 2025 – 2026</p><ul><li>Anggota Divisi Supply dan Logistics pada I/O Festival 2026.</li><li>Anggota Divisi Perlengkapan dan Konsumsi pada Welcoming Party 2025.</li></ul></article></div></div></section>
+      <section id="proyek" className="content section"><div className="title-row"><SectionTitle number="03 · PROYEK" title="Proyek Pengembangan & Pemodelan Data" /><a className="text-link" href="https://github.com/LessThanNone" target="_blank" rel="noreferrer">Lihat repositori di GitHub →</a></div><div className="project-grid">{projects.map(([num, meta, title, desc, tags]) => <article className="project-card" key={num}><div><b className="number">{num}</b><Chip>{meta}</Chip></div><h3>{title}</h3><p>{desc}</p><footer>{tags.map(tag => <Chip key={tag}>{tag}</Chip>)}</footer></article>)}</div></section>
+      <section id="keahlian" className="content section"><SectionTitle number="04 · KEAHLIAN TEKNIS" title="Teknologi, Bahasa Pemrograman & Alat Pengembangan" /><div className="skill-grid">{skills.map(([icon, title, values]) => <article className="skill-card" key={title as string}><i>{icon}</i><h3>{title}</h3><div>{(values as string[]).map(value => <Chip key={value}>{value}</Chip>)}</div></article>)}</div></section>
+      <section id="sertifikat" className="content section"><div className="title-row"><SectionTitle number="05 · SERTIFIKASI" title="Sertifikasi & Pelatihan Profesional" /><p className="muted">5 Sertifikasi Terverifikasi (2025 – 2026)</p></div><div className="certificate-grid">{certificates.map(([mark, meta, title, type], index) => <article className="certificate" key={title}><b>{mark}</b><div><small>No. 00{index + 1}</small><span>{meta}</span><h3>{title}</h3><p>✓ {type}</p></div></article>)}</div></section>
+      <section id="kontak" className="content section contact-section"><div className="contact-box"><p className="eyebrow">06 · KONTAK</p><h2>Mari Terhubung & Berkolaborasi</h2><p>Terbuka untuk kesempatan magang, proyek pengembangan aplikasi web maupun mobile, pengolahan data, serta kolaborasi di bidang teknologi.</p><div className="email-box"><code>c.charlesswork@gmail.com</code><button onClick={copyEmail}>{copied ? "Tersalin ✓" : "Salin Email"}</button></div><div className="socials"><span>⌖ Jakarta Barat</span><a href="tel:081779952785">☎ 081779952785</a><a href="https://www.linkedin.com/in/charlesswork" target="_blank" rel="noreferrer">◉ LinkedIn</a><a href="https://github.com/LessThanNone" target="_blank" rel="noreferrer">⌘ GitHub</a></div></div></section>
+    </main><footer className="site-footer"><div className="content"><div><strong>Charless</strong><p>Portofolio S1 Teknik Informatika · Universitas Tarumanagara</p></div><div><p>Jakarta Barat, Indonesia · c.charlesswork@gmail.com</p><small>© 2026 Charless. Hak cipta dilindungi.</small></div></div></footer>
+  </>;
 }
