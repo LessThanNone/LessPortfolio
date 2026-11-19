@@ -1,5 +1,5 @@
 "use client";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 const projects: [string, string, string, string, string[]][] = [
   ["01", "Data Mining · 2026", "Pemodelan Prediksi Kepuasan Kerja Karyawan", "Membangun model prediktif employee attrition dengan Gradient Boosting Regression dan smoothed bootstrap oversampling, mengevaluasi MAE, RMSE, R-Squared, serta feature importance tiap divisi.", ["MATLAB", "Gradient Boosting", "Bootstrap Oversampling", "Feature Importance"]],
@@ -14,8 +14,43 @@ function Chip({ children }: { children: React.ReactNode }) { return <span classN
 
 export default function Home() {
   const [copied, setCopied] = useState(false);
+  const [showNotice, setShowNotice] = useState(false);
+
+  useEffect(() => {
+    // Tampilkan popup saat pertama kali masuk ke web
+    const dismissed = sessionStorage.getItem("noticeDismissed");
+    if (!dismissed) {
+      setShowNotice(true);
+    }
+  }, []);
+
+  const closeNotice = () => {
+    setShowNotice(false);
+    sessionStorage.setItem("noticeDismissed", "true");
+  };
+
   const copyEmail = async () => { await navigator.clipboard.writeText("c.charlesswork@gmail.com"); setCopied(true); window.setTimeout(() => setCopied(false), 2000); };
   return <>
+    {showNotice && (
+      <div className="modal-backdrop" onClick={closeNotice} role="dialog" aria-modal="true">
+        <div className="modal-card" onClick={(e) => e.stopPropagation()}>
+          <div className="modal-header">
+            <span className="modal-badge">
+              <i /> Dalam Pengembangan
+            </span>
+          </div>
+          <h3>Halo, Selamat Datang! 👋</h3>
+          <p>
+            Portofolio ini masih dalam tahap pengembangan aktif. Konten, proyek, serta tampilan antarmuka akan terus diperbarui dan disempurnakan secara berkala.
+          </p>
+          <div className="modal-footer">
+            <button type="button" onClick={closeNotice}>
+              Mengerti & Lanjutkan
+            </button>
+          </div>
+        </div>
+      </div>
+    )}
     <header className="site-header"><div className="nav-wrap"><a className="brand" href="#beranda"><b>C</b><span><strong>CHARLESS</strong><small>WEB & DATA ENGINEERING</small></span></a><span className="availability"><i /> Terbuka untuk Magang & Kolaborasi</span><nav aria-label="Navigasi utama">{[["Tentang", "tentang"], ["Pengalaman", "pengalaman"], ["Proyek", "proyek"], ["Keahlian", "keahlian"], ["Sertifikasi", "sertifikat"], ["Kontak", "kontak"]].map(([label, id]) => <a key={id} href={`#${id}`}>{label}</a>)}</nav><a className="contact-cta" href="#kontak">Hubungi Saya ↗</a></div></header>
     <main id="beranda">
       <section className="hero content"><div className="hero-copy"><p className="eyebrow">PORTOFOLIO · 2026</p><h1>Membangun solusi digital yang <em>bermakna.</em></h1><p className="lede">Mahasiswa Teknik Informatika yang berfokus pada pengembangan web, aplikasi mobile, dan pengolahan data. Menyatukan ketelitian teknis dengan pengalaman digital yang manusiawi.</p><div className="hero-actions"><a className="button primary" href="#proyek">Lihat Proyek ↓</a><a className="button secondary" href="#tentang">Kenalan Lebih Dekat</a></div></div><aside className="profile-card"><div className="profile-monogram">C</div><p className="eyebrow">SAAT INI</p><h2>Teknik Informatika</h2><p>Universitas Tarumanagara</p><div className="profile-grid"><span><b>5</b><small>SEMESTER</small></span><span><b>3.93</b><small>IPK / 4.00</small></span><span><b>4+</b><small>PROYEK</small></span></div></aside></section>
