@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import ScrollExpand from "@/components/ScrollExpand";
 import AnimatedContent from "@/components/AnimatedContent";
 import SplitText from "@/components/SplitText";
+import PillNav from "@/components/PillNav";
 
 interface ProjectItem {
   num: string;
@@ -14,18 +15,21 @@ interface ProjectItem {
   fullDesc: string;
   tags: string[];
   link?: string;
+  demoUrl?: string;
+  reportUrl?: string;
 }
 
 const projects: ProjectItem[] = [
   {
     num: "01",
-    category: "data",
-    meta: "Data Mining · 2026",
-    title: "Pemodelan Prediksi Kepuasan Kerja Karyawan",
-    desc: "Membangun model prediktif employee attrition dengan Gradient Boosting Regression dan smoothed bootstrap oversampling, mengevaluasi MAE, RMSE, R-Squared, serta feature importance.",
-    fullDesc: "Penelitian mendalam menggunakan MATLAB untuk memprediksi tingkat retensi karyawan. Pendekatan mencakup penanganan data tidak seimbang dengan teknik smoothed bootstrap oversampling, perbandingan metrik kinerja algoritma (MAE, RMSE, R²), dan identifikasi faktor penentu kepuasan pada tiap divisi kerja.",
-    tags: ["MATLAB", "Gradient Boosting", "Bootstrap Oversampling", "Feature Importance"],
-    link: "https://github.com/LessThanNone",
+    category: "web",
+    meta: "Full-Stack Development · 2026",
+    title: "StayRent — Property Rental Web Application",
+    desc: "Platform persewaan properti berbasis MERN stack dengan autentikasi berbasis peran (penyewa, pemilik, admin), pencarian & filter properti, manajemen booking, dan kontak WhatsApp langsung.",
+    fullDesc: "Platform web full-stack terintegrasi untuk persewaan properti dengan stack MERN (MongoDB, Express, React, Node.js). Dilengkapi autentikasi JWT multi-role untuk penyewa, pemilik properti, dan admin. Memiliki fitur pencarian & penyaringan properti interaktif, manajemen listing dan reservasi, daftar keinginan (wishlist), ulasan pengguna, upload gambar hunian, serta integrasi kontak langsung ke pemilik via WhatsApp.",
+    tags: ["React", "Node.js", "Express.js", "MongoDB", "Tailwind CSS", "JWT"],
+    link: "https://github.com/LessThanNone/StayRent",
+    demoUrl: "https://youtu.be/eySfyn-7pJc?si=wC-N2kz-Ij0nLvVj",
   },
   {
     num: "02",
@@ -35,7 +39,8 @@ const projects: ProjectItem[] = [
     desc: "Mengembangkan antarmuka responsif untuk asisten dosen dengan React, Next.js, TypeScript, dan Tailwind CSS; mencakup QR check-in, presensi, jadwal mengajar, dan kelas.",
     fullDesc: "Aplikasi portal operasional asisten dosen Universitas Tarumanagara. Mengintegrasikan autentikasi dosen dan asisten dosen, scanner QR kehadiran kelas real-time, manajemen absensi responsif, serta penugasan jadwal asisten dosen.",
     tags: ["Next.js", "React", "TypeScript", "Tailwind CSS", "REST API"],
-    link: "https://github.com/LessThanNone",
+    link: "https://github.com/KamingLo/altar-frontend",
+    demoUrl: "https://drive.google.com/file/d/1R6YssACYFXfmvHnww3DrAMFHGXfhFJgR/view?usp=sharing",
   },
   {
     num: "03",
@@ -45,30 +50,11 @@ const projects: ProjectItem[] = [
     desc: "Membangun platform pembelajaran berbasis Next.js: autentikasi, katalog kursus, pembelian kelas, pelacakan progres, sertifikat, dan panel admin materi.",
     fullDesc: "Platform web edukasi modular untuk kursus teknologi. Mengimplementasikan modul video belajar interaktif, dashboard analitik progres siswa, sistem penerbitan sertifikat digital, dan CMS admin untuk penambahan modul materi baru.",
     tags: ["Next.js", "React", "Tailwind CSS", "Admin Dashboard"],
-    link: "https://github.com/LessThanNone",
+    link: "https://github.com/KamingLo/TrainityNext",
+    demoUrl: "https://youtu.be/v_6A5_IvTBU?si=7HTsFuWUbFEuDnBP",
   },
   {
     num: "04",
-    category: "mobile",
-    meta: "Mobile Programming · 2025",
-    title: "Pengembangan Aplikasi Mobile Learra",
-    desc: "Mengembangkan aplikasi asuransi Flutter dengan autentikasi dan integrasi API untuk pembelian polis, pembayaran premi, dan pengajuan klaim.",
-    fullDesc: "Aplikasi mobile cross-platform berbasis Flutter dan Dart untuk layanan finansial asuransi. Menyediakan alur onboarding pengguna yang mulus, katalog polis digital terintegrasi API pembayaran, dan formulir pengajuan klaim berbasis kamera dan dokumen.",
-    tags: ["Flutter", "Dart", "API Integration", "Mobile UI/UX"],
-    link: "https://github.com/LessThanNone",
-  },
-  {
-    num: "05",
-    category: "web",
-    meta: "Full-Stack Development · 2026",
-    title: "StayRent — Property Rental Web Application",
-    desc: "Platform persewaan properti berbasis MERN stack dengan autentikasi berbasis peran (penyewa, pemilik, admin), pencarian & filter properti, manajemen booking, dan kontak WhatsApp langsung.",
-    fullDesc: "Platform web full-stack terintegrasi untuk persewaan properti dengan stack MERN (MongoDB, Express, React, Node.js). Dilengkapi autentikasi JWT multi-role untuk penyewa, pemilik properti, dan admin. Memiliki fitur pencarian & penyaringan properti interaktif, manajemen listing dan reservasi, daftar keinginan (wishlist), ulasan pengguna, upload gambar hunian, serta integrasi kontak langsung ke pemilik via WhatsApp.",
-    tags: ["React", "Node.js", "Express.js", "MongoDB", "Tailwind CSS", "JWT"],
-    link: "https://github.com/LessThanNone/StayRent",
-  },
-  {
-    num: "06",
     category: "web",
     meta: "Web Development Game · 2025",
     title: "iClick — Click Speed Test Game",
@@ -76,6 +62,28 @@ const projects: ProjectItem[] = [
     fullDesc: "Proyek pengembangan web pertama yang dibuat untuk penugasan mata kuliah Backend Development. Game pengukur kecepatan klik interaktif yang menyediakan pilihan durasi 5, 10, dan 15 detik. Menyajikan pelacakan statistik kecepatan klik per detik (CPS) secara real-time, sistem bonus multiplier acak, ranking skor pemain, serta animasi efek ripple visual dan audio responsif.",
     tags: ["HTML", "CSS", "JavaScript", "Audio API", "Interactive UI"],
     link: "https://github.com/KamingLo/iClick",
+    demoUrl: "https://youtu.be/Cf8Y80dZcJo?si=lO1v1NChzOVsbwZ0",
+  },
+  {
+    num: "05",
+    category: "mobile",
+    meta: "Mobile Programming · 2025",
+    title: "Pengembangan Aplikasi Mobile Learra",
+    desc: "Mengembangkan aplikasi asuransi Flutter dengan autentikasi dan integrasi API untuk pembelian polis, pembayaran premi, dan pengajuan klaim.",
+    fullDesc: "Aplikasi mobile cross-platform berbasis Flutter dan Dart untuk layanan finansial asuransi. Menyediakan alur onboarding pengguna yang mulus, katalog polis digital terintegrasi API pembayaran, dan formulir pengajuan klaim berbasis kamera dan dokumen.",
+    tags: ["Flutter", "Dart", "API Integration", "Mobile UI/UX"],
+    link: "https://github.com/kaminglo/learra",
+    demoUrl: "https://youtu.be/BrQjxDMiyUM?si=FfNFlrkYqdE4SUhN",
+  },
+  {
+    num: "06",
+    category: "data",
+    meta: "Data Mining · 2026",
+    title: "Pemodelan Prediksi Kepuasan Kerja Karyawan",
+    desc: "Membangun model prediktif employee attrition dengan Gradient Boosting Regression dan smoothed bootstrap oversampling, mengevaluasi MAE, RMSE, R-Squared, serta feature importance.",
+    fullDesc: "Penelitian mendalam menggunakan MATLAB untuk memprediksi tingkat retensi karyawan. Pendekatan mencakup penanganan data tidak seimbang dengan teknik smoothed bootstrap oversampling, perbandingan metrik kinerja algoritma (MAE, RMSE, R²), dan identifikasi faktor penentu kepuasan pada tiap divisi kerja.",
+    tags: ["MATLAB", "Gradient Boosting", "Bootstrap Oversampling", "Feature Importance"],
+    reportUrl: "Laporan UAS Data Mining Gradient Boosting Regression.pdf",
   },
 ];
 
@@ -98,12 +106,20 @@ const skills = [
   },
 ];
 
-const certificates = [
-  { mark: "M", org: "MongoDB · 2026", title: "MongoDB Node.js Developer Path for SmartBridge", status: "Completion" },
-  { mark: "SF", org: "Salesforce · 2026", title: "Salesforce Talent Accelerator Program", status: "Completion" },
-  { mark: "IBM", org: "IBM SkillsBuild x Hacktiv8 · 2026", title: "AI Agent for Programming & Data Analysis", status: "Accomplishment" },
-  { mark: "G", org: "Google · 2026", title: "Gemini Certified Student", status: "Certified" },
-  { mark: "RH", org: "Red Hat Academy · 2025", title: "Red Hat System Administration I & II", status: "Attendance" },
+interface CertificateItem {
+  mark: string;
+  org: string;
+  title: string;
+  status: string;
+  image?: string;
+}
+
+const certificates: CertificateItem[] = [
+  { mark: "M", org: "MongoDB · 2026", title: "MongoDB Node.js Developer Path for SmartBridge", status: "Completion", image: "" },
+  { mark: "SF", org: "Salesforce · 2026", title: "Salesforce Talent Accelerator Program", status: "Completion", image: "salesforce certificate.jpg" },
+  { mark: "IBM", org: "IBM SkillsBuild x Hacktiv8 · 2026", title: "AI Agent for Programming & Data Analysis", status: "Accomplishment", image: "IBM Data - AI Agent for Data Analysis.jpg" },
+  { mark: "G", org: "Google · 2026", title: "Gemini Certified Student", status: "Certified", image: "master.encrypted.jpg" },
+  { mark: "RH", org: "Red Hat Academy · 2025", title: "Red Hat System Administration I & II", status: "Attendance", image: "redhat1.jpg" },
 ];
 
 export default function Home() {
@@ -115,6 +131,7 @@ export default function Home() {
   const [isIntroComplete, setIsIntroComplete] = useState(false);
   const [projectCategory, setProjectCategory] = useState<"all" | "web" | "mobile" | "data">("all");
   const [selectedProject, setSelectedProject] = useState<ProjectItem | null>(null);
+  const [selectedCert, setSelectedCert] = useState<CertificateItem | null>(null);
 
   useEffect(() => {
     const dismissed = sessionStorage.getItem("noticeDismissed");
@@ -131,16 +148,36 @@ export default function Home() {
       const introThreshold = window.innerHeight * 1.1;
       setIsIntroComplete(window.scrollY > introThreshold);
 
-      const sections = ["beranda", "projects", "experiences", "about-skills", "education-certs", "contact"];
-      for (const section of sections) {
-        const el = document.getElementById(section);
+      const atBottom =
+        window.innerHeight + Math.ceil(window.scrollY) >=
+        document.documentElement.scrollHeight - 2;
+      if (atBottom) {
+        setActiveSection("contact");
+        return;
+      }
+
+      const sectionMap = [
+        { id: "contact", nav: "contact" },
+        { id: "education-certs", nav: "education-certs" },
+        { id: "about-skills", nav: "about-skills" },
+        { id: "experiences", nav: "experiences" },
+        { id: "projects", nav: "projects" },
+        { id: "hero-profile", nav: "beranda" },
+      ];
+      let matched = false;
+      for (const { id, nav } of sectionMap) {
+        const el = document.getElementById(id);
         if (el) {
           const rect = el.getBoundingClientRect();
-          if (rect.top <= 140 && rect.bottom >= 140) {
-            setActiveSection(section);
+          if (rect.top <= 200) {
+            setActiveSection(nav);
+            matched = true;
             break;
           }
         }
+      }
+      if (!matched) {
+        setActiveSection("beranda");
       }
     };
 
@@ -151,13 +188,14 @@ export default function Home() {
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
       if (e.key === "Escape") {
+        if (selectedCert) setSelectedCert(null);
         if (selectedProject) setSelectedProject(null);
         if (showNotice) closeNotice();
       }
     };
     window.addEventListener("keydown", handleKeyDown);
     return () => window.removeEventListener("keydown", handleKeyDown);
-  }, [selectedProject, showNotice]);
+  }, [selectedProject, selectedCert, showNotice]);
 
   const closeNotice = () => {
     setShowNotice(false);
@@ -170,7 +208,6 @@ export default function Home() {
       setCopied(true);
       window.setTimeout(() => setCopied(false), 2200);
     } catch {
-      // fallback
     }
   };
 
@@ -205,7 +242,7 @@ export default function Home() {
       {showNotice && (
         <div className="modal-backdrop" onClick={closeNotice} role="dialog" aria-modal="true">
           <div className="modal-card" onClick={(e) => e.stopPropagation()}>
-            <span className="eyebrow-tag">Pengumuman</span>
+            <span className="card-context-badge">Pemberitahuan</span>
             <h3>Selamat Datang di Portofolio Saya</h3>
             <p>
               Website portofolio ini sedang dalam tahap pengembangan aktif. Proyek, pembaruan materi, serta tampilan antarmuka akan terus diperbarui secara berkala.
@@ -248,16 +285,123 @@ export default function Home() {
                 </span>
               ))}
             </div>
-            {selectedProject.link && (
-              <a
-                href={selectedProject.link}
-                target="_blank"
-                rel="noreferrer"
+            <div className="modal-actions-group">
+              {selectedProject.link && (
+                <a
+                  href={selectedProject.link}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="btn-modal-action btn-modal-primary"
+                >
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                    <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z" />
+                  </svg>
+                  <span>Repositori GitHub</span>
+                </a>
+              )}
+              {selectedProject.demoUrl && (
+                <a
+                  href={selectedProject.demoUrl}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="btn-modal-action btn-modal-secondary"
+                >
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                    <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z" />
+                  </svg>
+                  <span>Demonstrasi Video ↗</span>
+                </a>
+              )}
+              {selectedProject.reportUrl && (
+                <a
+                  href={selectedProject.reportUrl}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="btn-modal-action btn-modal-primary"
+                >
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                    <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                    <polyline points="14 2 14 8 20 8"></polyline>
+                    <line x1="16" y1="13" x2="8" y2="13"></line>
+                    <line x1="16" y1="17" x2="8" y2="17"></line>
+                    <polyline points="10 9 9 9 8 9"></polyline>
+                  </svg>
+                  <span>Cek Dokumen Laporan ↗</span>
+                </a>
+              )}
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* Certificate Preview Modal */}
+      {selectedCert && (
+        <div
+          className="detail-modal-backdrop"
+          onClick={() => setSelectedCert(null)}
+          role="dialog"
+          aria-modal="true"
+          aria-labelledby="cert-modal-heading"
+        >
+          <div className="detail-modal-card cert-modal-card" onClick={(e) => e.stopPropagation()}>
+            <button
+              className="modal-close-btn"
+              onClick={() => setSelectedCert(null)}
+              aria-label="Tutup pratinjau sertifikat"
+            >
+              ✕
+            </button>
+            <div style={{ display: "flex", alignItems: "center", gap: "10px", marginBottom: "8px" }}>
+              <span className="card-context-badge">{selectedCert.org}</span>
+              <span className="tag-pill">Predikat: {selectedCert.status}</span>
+            </div>
+            <h3 id="cert-modal-heading">{selectedCert.title}</h3>
+
+            <div className="cert-preview-wrapper">
+              {selectedCert.image ? (
+                <img
+                  src={selectedCert.image}
+                  alt={`Sertifikat ${selectedCert.title}`}
+                  className="cert-preview-img"
+                />
+              ) : (
+                <div className="cert-placeholder-frame">
+                  <div className="cert-placeholder-seal">
+                    <span>{selectedCert.mark}</span>
+                  </div>
+                  <div className="cert-placeholder-text">
+                    <span className="cert-placeholder-org">{selectedCert.org}</span>
+                    <p className="cert-placeholder-title">{selectedCert.title}</p>
+                    <span className="cert-placeholder-recipient">
+                      Diberikan kepada: <strong>Charless</strong>
+                    </span>
+                    <span className="cert-placeholder-note">
+                      Simpan file gambar sertifikat pada folder <code>public/certificates/</code> dan isi path-nya pada data <code>certificates</code>.
+                    </span>
+                  </div>
+                </div>
+              )}
+            </div>
+
+            <div style={{ display: "flex", justifyContent: "flex-end", gap: "10px", marginTop: "20px" }}>
+              {selectedCert.image && (
+                <a
+                  href={selectedCert.image}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="btn-overlay-cyan"
+                >
+                  Buka Gambar Penuh ↗
+                </a>
+              )}
+              <button
+                type="button"
                 className="btn-filled-plum"
+                onClick={() => setSelectedCert(null)}
               >
-                Kunjungi Repositori GitHub
-              </a>
-            )}
+                Tutup
+              </button>
+            </div>
           </div>
         </div>
       )}
@@ -265,33 +409,38 @@ export default function Home() {
       {/* Header – visible only after intro */}
       <header className={`site-header ${isIntroComplete ? "visible" : ""} ${isScrolled ? "scrolled" : ""}`}>
         <div className="nav-wrap">
-          <a className="brand" href="#beranda">
+          <a className="brand" href="#beranda" aria-label="Beranda Charless">
             <div className="brand-monogram">C</div>
             <div className="brand-text">CHARLESS</div>
           </a>
 
-          <nav className="nav-links" aria-label="Navigasi Utama">
-            {[
-              ["Beranda", "beranda"],
-              ["Projects", "projects"],
-              ["Experiences", "experiences"],
-              ["About & Skills", "about-skills"],
-              ["Education & Certs", "education-certs"],
-              ["Contact", "contact"],
-            ].map(([label, id]) => (
-              <a
-                key={id}
-                href={`#${id}`}
-                className={`nav-link ${activeSection === id ? "active" : ""}`}
-              >
-                {label}
-              </a>
-            ))}
-          </nav>
+          <PillNav
+            className="site-pill-nav"
+            layout="split"
+            size="md"
+            theme="light"
+            surface="glass"
+            itemStyle="pill"
+            hoverEffect="fill"
+            indicator="dot"
+            highlightColor="#480355"
+            highlightTextColor="#FAFAFC"
+            activeHref={`#${activeSection}`}
+            items={[
+              { label: "Beranda", href: "#beranda" },
+              { label: "Proyek", href: "#projects" },
+              { label: "Pengalaman", href: "#experiences" },
+              { label: "Tentang", href: "#about-skills" },
+              { label: "Pendidikan", href: "#education-certs" },
+              { label: "Kontak", href: "#contact" },
+            ]}
+          />
 
-          <a className="btn-filled-plum" href="#contact">
-            Hubungi Saya
-          </a>
+          <div className="header-cta-wrap">
+            <a className="btn-filled-plum header-cta-btn" href="#contact">
+              Hubungi Saya
+            </a>
+          </div>
         </div>
       </header>
 
@@ -334,9 +483,6 @@ export default function Home() {
             enabled
           >
             <div style={{ maxWidth: "700px", color: "#FAFAFC", padding: "0 20px" }}>
-              <span className="eyebrow-tag" style={{ color: "#90FCF9", textShadow: "0 2px 8px rgba(0,0,0,0.5)" }}>
-                Portofolio
-              </span>
               <h2
                 style={{
                   fontFamily: "var(--font-heading)",
@@ -395,7 +541,6 @@ export default function Home() {
           <section id="hero-profile" className="hero content">
             <div className="hero-layout">
               <AnimatedContent distance={40} direction="vertical" duration={0.9} ease="power3.out" threshold={0.15} stagger={0.1}>
-                <span className="eyebrow-tag">Portofolio · Web, Mobile, Data &amp; AI</span>
                 <h1 className="hero-huge-display">
                   Membangun solusi digital yang <span>bermakna.</span>
                 </h1>
@@ -403,8 +548,29 @@ export default function Home() {
                   Mahasiswa Teknik Informatika Universitas Tarumanagara yang berpengalaman dalam pengembangan web serta aplikasi mobile, dengan minat kuat di bidang data science. Bertujuan untuk menyatukan data dengan pengalaman pengguna yang nyaman.
                 </p>
                 <div className="hero-cta-group">
-                  <a className="btn-filled-plum" href="#projects">Jelajahi Proyek</a>
-                  <a className="btn-overlay-cyan" href="#about-skills">Tentang Saya</a>
+                  <a
+                    className="btn-filled-plum"
+                    href="/CV Charless.pdf"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    <span>Lihat CV</span>
+                    <svg
+                      width="14"
+                      height="14"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth="2"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      aria-hidden="true"
+                    >
+                      <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
+                      <polyline points="15 3 21 3 21 9" />
+                      <line x1="10" y1="14" x2="21" y2="3" />
+                    </svg>
+                  </a>
                 </div>
               </AnimatedContent>
 
@@ -435,7 +601,6 @@ export default function Home() {
           <section id="projects" className="section content">
             <AnimatedContent distance={30} direction="vertical" duration={0.7} ease="power3.out" threshold={0.15}>
               <div className="section-head">
-                <span className="eyebrow-tag">01 · Portofolio Karya</span>
                 <h2 className="section-title">Proyek Pilihan</h2>
               </div>
             </AnimatedContent>
@@ -446,7 +611,7 @@ export default function Home() {
                   ["all", "Semua Kategori"],
                   ["web", "Web Development"],
                   ["mobile", "Mobile App"],
-                  ["data", "Data Science & Mining"],
+                  ["data", "Data Science"],
                 ] as const
               ).map(([cat, label]) => (
                 <button
@@ -482,8 +647,10 @@ export default function Home() {
                     </div>
                     <h3>{p.title}</h3>
                     <p>{p.desc}</p>
-                    <div style={{ color: "var(--link)", fontSize: "12px", fontWeight: 500, marginBottom: "16px" }}>
-                      Buka detail studi kasus
+                    <div className="project-card-footer-actions">
+                      <span className="project-card-action-text">
+                        Detail Proyek →
+                      </span>
                     </div>
                     <div className="project-card-tags">
                       {p.tags.map((tag) => (
@@ -500,7 +667,6 @@ export default function Home() {
           <section id="experiences" className="section content">
             <AnimatedContent distance={30} direction="vertical" duration={0.7} ease="power3.out" threshold={0.15}>
               <div className="section-head">
-                <span className="eyebrow-tag">02 · Rekam Jejak</span>
                 <h2 className="section-title">Pengalaman Kerja &amp; Kepanitiaan</h2>
               </div>
             </AnimatedContent>
@@ -545,7 +711,7 @@ export default function Home() {
                     <div className="org-role">Anggota UKM · 2024 - Sekarang</div>
                     <ul>
                       <li>Koordinator Divisi Perlengkapan dan Konsumsi pada National English Competition 2025.</li>
-                      <li>Anggota operasional pada kepanitiaan TEC Anniversary dan penyelenggaraan TOEFL Institutional Test.</li>
+                      <li>Anggota Divisi Perlengkapan dan Konsumsi pada kepanitiaan TEC Anniversary dan penyelenggaraan TOEFL Test.</li>
                     </ul>
                   </article>
                 </AnimatedContent>
@@ -568,23 +734,50 @@ export default function Home() {
           <section id="about-skills" className="section content">
             <AnimatedContent distance={30} direction="vertical" duration={0.7} ease="power3.out" threshold={0.15}>
               <div className="section-head">
-                <span className="eyebrow-tag">03 · Profil &amp; Keahlian</span>
-                <h2 className="section-title">About &amp; Skills</h2>
+                <h2 className="section-title">Tentang &amp; Keahlian</h2>
               </div>
             </AnimatedContent>
 
             <div className="about-skills-layout">
               <AnimatedContent distance={40} direction="horizontal" duration={0.85} ease="power3.out" threshold={0.1}>
-                <div className="about-prose">
-                  <p className="highlight-para">
-                    &ldquo;Fokus pada kejelasan struktural, ketepatan data, dan pengalaman pengguna yang bersahaja.&rdquo;
-                  </p>
-                  <p>
-                    Saya Charless, mahasiswa S1 Teknik Informatika di Universitas Tarumanagara dengan antusiasme tinggi pada rekayasa web full-stack, pengembangan aplikasi mobile, dan pengolahan data.
-                  </p>
-                  <p>
-                    Melalui peran sebagai asisten laboratorium dan pengembang proyek perangkat lunak, saya terbiasa menerjemahkan kebutuhan logis menjadi antarmuka responsif dan alur data yang terstruktur. Saya memprioritaskan kode yang bersih, mudah dipelihara, dan berorientasi pada pemecahan masalah nyata.
-                  </p>
+                <div className="about-dossier-card">
+                  <div className="about-quote-header">
+                    <div className="quote-icon" aria-hidden="true">&ldquo;</div>
+                    <p className="highlight-para">
+                      Fokus pada kejelasan struktural, ketepatan data, dan pengalaman pengguna yang bersahaja.
+                    </p>
+                  </div>
+                  <div className="about-narrative">
+                    <p>
+                      Saya Charless, mahasiswa S1 Teknik Informatika di Universitas Tarumanagara dengan antusiasme tinggi pada rekayasa web full-stack, pengembangan aplikasi mobile, dan pengolahan data.
+                    </p>
+                    <p>
+                      Melalui peran sebagai asisten laboratorium dan pengembang proyek perangkat lunak, saya terbiasa menerjemahkan kebutuhan logis menjadi antarmuka responsif dan alur data yang terstruktur. Saya memprioritaskan kode yang bersih, mudah dipelihara, dan berorientasi pada pemecahan masalah nyata.
+                    </p>
+                  </div>
+                  <div className="about-pillars-grid">
+                    <div className="about-pillar-card">
+                      <span className="pillar-num">01</span>
+                      <div>
+                        <strong>Web &amp; Mobile</strong>
+                        <p>Next.js, React &amp; Flutter</p>
+                      </div>
+                    </div>
+                    <div className="about-pillar-card">
+                      <span className="pillar-num">02</span>
+                      <div>
+                        <strong>Data &amp; AI</strong>
+                        <p>Machine Learning &amp; SQL</p>
+                      </div>
+                    </div>
+                    <div className="about-pillar-card">
+                      <span className="pillar-num">03</span>
+                      <div>
+                        <strong>Akademik</strong>
+                        <p>Asisten Lab 3 Semester</p>
+                      </div>
+                    </div>
+                  </div>
                 </div>
               </AnimatedContent>
 
@@ -592,7 +785,9 @@ export default function Home() {
                 {skills.map((cat, i) => (
                   <AnimatedContent key={cat.category} distance={30} direction="vertical" duration={0.7} ease="power3.out" delay={i * 0.08} threshold={0.1}>
                     <div className="skill-category-card">
-                      <h4>{cat.category}</h4>
+                      <div className="skill-category-header">
+                        <h4>{cat.category}</h4>
+                      </div>
                       <div className="skill-chips">
                         {cat.items.map((skill) => (
                           <span key={skill} className="skill-chip">{skill}</span>
@@ -609,42 +804,85 @@ export default function Home() {
           <section id="education-certs" className="section content">
             <AnimatedContent distance={30} direction="vertical" duration={0.7} ease="power3.out" threshold={0.15}>
               <div className="section-head">
-                <span className="eyebrow-tag">04 · Kualifikasi Akademik &amp; Profesional</span>
-                <h2 className="section-title">Education &amp; Certificates</h2>
+                <h2 className="section-title">Pendidikan &amp; Sertifikasi</h2>
               </div>
             </AnimatedContent>
 
             <div className="edu-cert-layout">
-              <AnimatedContent distance={40} direction="horizontal" duration={0.85} ease="power3.out" threshold={0.1}>
-                <div className="education-card">
-                  <span className="eyebrow-tag">Pendidikan Formal</span>
-                  <h3>S1 Teknik Informatika</h3>
-                  <p>Universitas Tarumanagara · Jakarta, Indonesia</p>
-                  <div className="edu-stats-grid">
-                    <div className="edu-stat">
-                      <span>IPK Kumulatif</span>
-                      <strong>3.93</strong>
-                    </div>
-                    <div className="edu-stat">
-                      <span>Semester</span>
-                      <strong>5</strong>
-                    </div>
-                    <div className="edu-stat">
-                      <span>Masa Studi</span>
-                      <strong>2024 - 2028</strong>
+              <div className="education-col">
+                <AnimatedContent distance={40} direction="horizontal" duration={0.85} ease="power3.out" threshold={0.1}>
+                  <div className="education-card">
+                    <h3>S1 Teknik Informatika</h3>
+                    <p>Universitas Tarumanagara · Jakarta, Indonesia</p>
+                    <div className="edu-stats-grid">
+                      <div className="edu-stat">
+                        <span>IPK Kumulatif</span>
+                        <strong>3.93</strong>
+                      </div>
+                      <div className="edu-stat">
+                        <span>Semester</span>
+                        <strong>Semester 5</strong>
+                      </div>
+                      <div className="edu-stat">
+                        <span>Masa Studi</span>
+                        <strong>2024 - 2028</strong>
+                      </div>
                     </div>
                   </div>
-                </div>
-              </AnimatedContent>
+                </AnimatedContent>
+
+                <AnimatedContent distance={40} direction="horizontal" duration={0.85} ease="power3.out" delay={0.1} threshold={0.1}>
+                  <div className="education-card">
+                    <h3>SMK · Multimedia</h3>
+                    <p>SMK Pelita IV · Jakarta, Indonesia</p>
+                    <div className="edu-stats-grid">
+                      <div className="edu-stat">
+                        <span>Bidang Fokus</span>
+                        <strong>Multimedia</strong>
+                      </div>
+                      <div className="edu-stat">
+                        <span>Status</span>
+                        <strong>Lulus</strong>
+                      </div>
+                      <div className="edu-stat">
+                        <span>Masa Studi</span>
+                        <strong>2021 - 2024</strong>
+                      </div>
+                    </div>
+                  </div>
+                </AnimatedContent>
+              </div>
 
               <div className="cert-list">
                 {certificates.map((cert, i) => (
                   <AnimatedContent key={cert.title} distance={30} direction="vertical" duration={0.65} ease="power3.out" delay={i * 0.07} threshold={0.1}>
-                    <article className="cert-card">
-                      <div className="cert-icon">{cert.mark}</div>
-                      <div className="cert-details">
-                        <h4>{cert.title}</h4>
-                        <small>{cert.org} · Predikat: {cert.status}</small>
+                    <article
+                      className="cert-card"
+                      role="button"
+                      tabIndex={0}
+                      onClick={() => setSelectedCert(cert)}
+                      onKeyDown={(e) => {
+                        if (e.key === "Enter" || e.key === " ") {
+                          e.preventDefault();
+                          setSelectedCert(cert);
+                        }
+                      }}
+                      aria-label={`Buka pratinjau sertifikat: ${cert.title}`}
+                    >
+                      <div className="cert-card-main">
+                        <div className="cert-icon">{cert.mark}</div>
+                        <div className="cert-details">
+                          <h4>{cert.title}</h4>
+                          <small>{cert.org} · Predikat: {cert.status}</small>
+                        </div>
+                      </div>
+                      <div className="cert-click-hint" title="Klik untuk melihat pratinjau sertifikat">
+                        <span>Lihat Sertifikat</span>
+                        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                          <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
+                          <polyline points="15 3 21 3 21 9" />
+                          <line x1="10" y1="14" x2="21" y2="3" />
+                        </svg>
                       </div>
                     </article>
                   </AnimatedContent>
@@ -657,10 +895,9 @@ export default function Home() {
           <section id="contact" className="section content">
             <AnimatedContent distance={40} direction="vertical" duration={0.9} ease="power3.out" threshold={0.1}>
               <div className="contact-container">
-                <span className="eyebrow-tag">05 · Kolaborasi &amp; Karir</span>
                 <h2>Mari Terhubung</h2>
                 <p>
-                  Terbuka untuk kesempatan program magang, proyek rekayasa perangkat lunak web maupun mobile, riset data, serta kolaborasi akademik.
+                  Terbuka untuk kesempatan program magang, proyek web maupun mobile, riset, serta kolaborasi bersama.
                 </p>
 
                 <div className="email-pill-box">
@@ -671,10 +908,30 @@ export default function Home() {
                 </div>
 
                 <div className="social-pills-row">
-                  <span className="social-pill">Jakarta Barat, Indonesia</span>
-                  <a href="tel:081779952785" className="social-pill">Telepon: 081779952785</a>
-                  <a href="https://www.linkedin.com/in/charlesswork" target="_blank" rel="noreferrer" className="social-pill">LinkedIn</a>
-                  <a href="https://github.com/LessThanNone" target="_blank" rel="noreferrer" className="social-pill">GitHub</a>
+                  <a
+                    href="https://www.linkedin.com/in/charlesswork"
+                    target="_blank"
+                    rel="noreferrer"
+                    className="social-pill"
+                    aria-label="Profil LinkedIn Charless"
+                  >
+                    <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                      <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" />
+                    </svg>
+                    <span>LinkedIn</span>
+                  </a>
+                  <a
+                    href="https://github.com/LessThanNone"
+                    target="_blank"
+                    rel="noreferrer"
+                    className="social-pill"
+                    aria-label="Profil GitHub Charless"
+                  >
+                    <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                      <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z" />
+                    </svg>
+                    <span>GitHub</span>
+                  </a>
                 </div>
               </div>
             </AnimatedContent>
