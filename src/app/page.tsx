@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import ScrollExpand from "@/components/ScrollExpand";
 import AnimatedContent from "@/components/AnimatedContent";
 import SplitText from "@/components/SplitText";
@@ -23,7 +23,7 @@ const projects: ProjectItem[] = [
   {
     num: "01",
     category: "web",
-    meta: "Full-Stack Development · 2026",
+    meta: "Full-Stack MERN · 2026",
     title: "StayRent — Property Rental Web Application",
     desc: "Platform persewaan properti berbasis MERN stack dengan autentikasi berbasis peran (penyewa, pemilik, admin), pencarian & filter properti, manajemen booking, dan kontak WhatsApp langsung.",
     fullDesc: "Platform web full-stack terintegrasi untuk persewaan properti dengan stack MERN (MongoDB, Express, React, Node.js). Dilengkapi autentikasi JWT multi-role untuk penyewa, pemilik properti, dan admin. Memiliki fitur pencarian & penyaringan properti interaktif, manajemen listing dan reservasi, daftar keinginan (wishlist), ulasan pengguna, upload gambar hunian, serta integrasi kontak langsung ke pemilik via WhatsApp.",
@@ -34,8 +34,8 @@ const projects: ProjectItem[] = [
   {
     num: "02",
     category: "web",
-    meta: "Software Development · 2026",
-    title: "Pengembangan Aplikasi ALTAR (Front-End)",
+    meta: "Software Development As Front End· 2026",
+    title: "ALTAR — App For Teaching Assistant",
     desc: "Mengembangkan antarmuka responsif untuk asisten dosen dengan React, Next.js, TypeScript, dan Tailwind CSS; mencakup QR check-in, presensi, jadwal mengajar, dan kelas.",
     fullDesc: "Aplikasi portal operasional asisten dosen Universitas Tarumanagara. Mengintegrasikan autentikasi dosen dan asisten dosen, scanner QR kehadiran kelas real-time, manajemen absensi responsif, serta penugasan jadwal asisten dosen.",
     tags: ["Next.js", "React", "TypeScript", "Tailwind CSS", "REST API"],
@@ -46,17 +46,17 @@ const projects: ProjectItem[] = [
     num: "03",
     category: "web",
     meta: "Front-End Programming · 2025",
-    title: "Pengembangan Platform Pembelajaran Trainity",
+    title: "Trainity — Digital Learning Platform",
     desc: "Membangun platform pembelajaran berbasis Next.js: autentikasi, katalog kursus, pembelian kelas, pelacakan progres, sertifikat, dan panel admin materi.",
     fullDesc: "Platform web edukasi modular untuk kursus teknologi. Mengimplementasikan modul video belajar interaktif, dashboard analitik progres siswa, sistem penerbitan sertifikat digital, dan CMS admin untuk penambahan modul materi baru.",
-    tags: ["Next.js", "React", "Tailwind CSS", "Admin Dashboard"],
+    tags: ["Next.js", "React", "Tailwind CSS", "TypeScript"],
     link: "https://github.com/KamingLo/TrainityNext",
     demoUrl: "https://youtu.be/v_6A5_IvTBU?si=7HTsFuWUbFEuDnBP",
   },
   {
     num: "04",
     category: "web",
-    meta: "Web Development Game · 2025",
+    meta: "Back-End Programming · 2024",
     title: "iClick — Click Speed Test Game",
     desc: "Game uji kecepatan klik berbasis web dengan mode durasi 5, 10, dan 15 detik, pelacakan CPS real-time, klik bonus acak, papan peringkat pemain, serta efek suara & ripple interaktif.",
     fullDesc: "Proyek pengembangan web pertama yang dibuat untuk penugasan mata kuliah Backend Development. Game pengukur kecepatan klik interaktif yang menyediakan pilihan durasi 5, 10, dan 15 detik. Menyajikan pelacakan statistik kecepatan klik per detik (CPS) secara real-time, sistem bonus multiplier acak, ranking skor pemain, serta animasi efek ripple visual dan audio responsif.",
@@ -68,7 +68,7 @@ const projects: ProjectItem[] = [
     num: "05",
     category: "mobile",
     meta: "Mobile Programming · 2025",
-    title: "Pengembangan Aplikasi Mobile Learra",
+    title: "Learra — Mobile Insurance Application",
     desc: "Mengembangkan aplikasi asuransi Flutter dengan autentikasi dan integrasi API untuk pembelian polis, pembayaran premi, dan pengajuan klaim.",
     fullDesc: "Aplikasi mobile cross-platform berbasis Flutter dan Dart untuk layanan finansial asuransi. Menyediakan alur onboarding pengguna yang mulus, katalog polis digital terintegrasi API pembayaran, dan formulir pengajuan klaim berbasis kamera dan dokumen.",
     tags: ["Flutter", "Dart", "API Integration", "Mobile UI/UX"],
@@ -111,15 +111,48 @@ interface CertificateItem {
   org: string;
   title: string;
   status: string;
-  image?: string;
+  images?: string[];
 }
 
 const certificates: CertificateItem[] = [
-  { mark: "M", org: "MongoDB · 2026", title: "MongoDB Node.js Developer Path for SmartBridge", status: "Completion", image: "" },
-  { mark: "SF", org: "Salesforce · 2026", title: "Salesforce Talent Accelerator Program", status: "Completion", image: "salesforce certificate.jpg" },
-  { mark: "IBM", org: "IBM SkillsBuild x Hacktiv8 · 2026", title: "AI Agent for Programming & Data Analysis", status: "Accomplishment", image: "IBM Data - AI Agent for Data Analysis.jpg" },
-  { mark: "G", org: "Google · 2026", title: "Gemini Certified Student", status: "Certified", image: "master.encrypted.jpg" },
-  { mark: "RH", org: "Red Hat Academy · 2025", title: "Red Hat System Administration I & II", status: "Attendance", image: "redhat1.jpg" },
+  {
+    mark: "M",
+    org: "MongoDB · 2026",
+    title: "MongoDB Node.js Developer Path for SmartBridge",
+    status: "Completion",
+    images: ["charless-mongo.jpg"],
+  },
+  {
+    mark: "SF",
+    org: "Salesforce · 2026",
+    title: "Salesforce Talent Accelerator Program",
+    status: "Completion",
+    images: ["salesforce certificate.jpg"],
+  },
+  {
+    mark: "IBM",
+    org: "IBM SkillsBuild x Hacktiv8 · 2026",
+    title: "AI Agent for Programming & Data Analysis",
+    status: "Accomplishment",
+    images: [
+      "IBM Agent For Programming.jpg  ",
+      "IBM Data - AI Agent for Data Analysis.jpg",
+    ],
+  },
+  {
+    mark: "G",
+    org: "Google · 2026",
+    title: "Gemini Certified Student",
+    status: "Certified",
+    images: ["master.encrypted.jpg"],
+  },
+  {
+    mark: "RH",
+    org: "Red Hat Academy · 2025",
+    title: "Red Hat System Administration I & II",
+    status: "Attendance",
+    images: ["redhat1.jpg", "redhat2.jpg"],
+  },
 ];
 
 export default function Home() {
@@ -132,6 +165,8 @@ export default function Home() {
   const [projectCategory, setProjectCategory] = useState<"all" | "web" | "mobile" | "data">("all");
   const [selectedProject, setSelectedProject] = useState<ProjectItem | null>(null);
   const [selectedCert, setSelectedCert] = useState<CertificateItem | null>(null);
+  const [welcomeKey, setWelcomeKey] = useState(0);
+  const hasLeftWelcomeRef = useRef(false);
 
   useEffect(() => {
     const dismissed = sessionStorage.getItem("noticeDismissed");
@@ -147,7 +182,15 @@ export default function Home() {
 
       const introThreshold = window.innerHeight * 1.1;
       setIsIntroComplete(window.scrollY > introThreshold);
+      const expandSpan = window.innerHeight * 1.3; // sesuai scrollDistance={1.3}
+      const expandProgress = Math.min(Math.max(window.scrollY / expandSpan, 0), 1);
 
+      if (expandProgress >= 0.88) {
+        hasLeftWelcomeRef.current = true;
+      } else if (expandProgress <= 0.55 && hasLeftWelcomeRef.current) {
+        hasLeftWelcomeRef.current = false;
+        setWelcomeKey((prev) => prev + 1);
+      }
       const atBottom =
         window.innerHeight + Math.ceil(window.scrollY) >=
         document.documentElement.scrollHeight - 2;
@@ -343,7 +386,11 @@ export default function Home() {
           aria-modal="true"
           aria-labelledby="cert-modal-heading"
         >
-          <div className="detail-modal-card cert-modal-card" onClick={(e) => e.stopPropagation()}>
+          <div
+            className="detail-modal-card cert-modal-card"
+            style={{ maxWidth: (selectedCert.images?.length ?? 0) > 1 ? "960px" : undefined }}
+            onClick={(e) => e.stopPropagation()}
+          >
             <button
               className="modal-close-btn"
               onClick={() => setSelectedCert(null)}
@@ -351,19 +398,39 @@ export default function Home() {
             >
               ✕
             </button>
-            <div style={{ display: "flex", alignItems: "center", gap: "10px", marginBottom: "8px" }}>
-              <span className="card-context-badge">{selectedCert.org}</span>
-              <span className="tag-pill">Predikat: {selectedCert.status}</span>
-            </div>
-            <h3 id="cert-modal-heading">{selectedCert.title}</h3>
+            <h3 id="cert-modal-heading" style={{ paddingRight: "36px" }}>
+              {selectedCert.title}
+            </h3>
 
             <div className="cert-preview-wrapper">
-              {selectedCert.image ? (
-                <img
-                  src={selectedCert.image}
-                  alt={`Sertifikat ${selectedCert.title}`}
-                  className="cert-preview-img"
-                />
+              {selectedCert.images && selectedCert.images.length > 0 ? (
+                <div
+                  style={{
+                    display: "grid",
+                    gridTemplateColumns:
+                      selectedCert.images.length > 1
+                        ? "repeat(auto-fit, minmax(280px, 1fr))"
+                        : "1fr",
+                    gap: "16px",
+                    width: "100%",
+                  }}
+                >
+                  {selectedCert.images.map((imgSrc, idx) => (
+                    <div key={imgSrc} style={{ display: "flex", flexDirection: "column", gap: "8px" }}>
+                      <img
+                        src={imgSrc}
+                        alt={`Sertifikat ${selectedCert.title} (${idx + 1})`}
+                        className="cert-preview-img"
+                        style={{ width: "100%", height: "auto", objectFit: "contain" }}
+                      />
+                      {selectedCert.images!.length > 1 && (
+                        <span style={{ fontSize: "12px", opacity: 0.75, textAlign: "center" }}>
+                          Sertifikat {idx + 1} dari {selectedCert.images!.length}
+                        </span>
+                      )}
+                    </div>
+                  ))}
+                </div>
               ) : (
                 <div className="cert-placeholder-frame">
                   <div className="cert-placeholder-seal">
@@ -382,26 +449,25 @@ export default function Home() {
                 </div>
               )}
             </div>
-
-            <div style={{ display: "flex", justifyContent: "flex-end", gap: "10px", marginTop: "20px" }}>
-              {selectedCert.image && (
-                <a
-                  href={selectedCert.image}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="btn-overlay-cyan"
-                >
-                  Buka Gambar Penuh ↗
-                </a>
-              )}
-              <button
-                type="button"
-                className="btn-filled-plum"
-                onClick={() => setSelectedCert(null)}
-              >
-                Tutup
-              </button>
-            </div>
+            {selectedCert.images && selectedCert.images.length > 0 && (
+              <div className="modal-actions-group" style={{ marginTop: "20px" }}>
+                {selectedCert.images.map((imgSrc, idx) => (
+                  <a
+                    key={imgSrc}
+                    href={imgSrc}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="btn-modal-action btn-modal-primary"
+                  >
+                    <span>
+                      {selectedCert.images!.length > 1
+                        ? `Buka Sertifikat ${idx + 1} ↗`
+                        : "Buka Gambar Penuh ↗"}
+                    </span>
+                  </a>
+                ))}
+              </div>
+            )}
           </div>
         </div>
       )}
@@ -452,6 +518,7 @@ export default function Home() {
             alt="Portofolio Charless"
             title={
               <SplitText
+                key={welcomeKey}
                 text="Welcome"
                 className="font-light tracking-tight"
                 effect="rise"
@@ -688,7 +755,7 @@ export default function Home() {
                   {
                     role: "Asisten Dosen: Algebra and Discrete Mathematics",
                     period: "Februari 2026 - Juni 2026",
-                    desc: "Membimbing 84 mahasiswa dalam dua kelas praktikum teori graf, logika proposisi, dan aljabar matriks, serta menyusun standardisasi penilaian responsi.",
+                    desc: "Membimbing 84 mahasiswa dalam dua kelas praktikum teori vector, logika proposisi, dan aljabar matriks, serta menyusun standardisasi penilaian responsi.",
                   },
                 ].map((item) => (
                   <AnimatedContent key={item.role} distance={35} direction="vertical" duration={0.75} ease="power3.out" threshold={0.12}>
@@ -744,15 +811,15 @@ export default function Home() {
                   <div className="about-quote-header">
                     <div className="quote-icon" aria-hidden="true">&ldquo;</div>
                     <p className="highlight-para">
-                      Fokus pada kejelasan struktural, ketepatan data, dan pengalaman pengguna yang bersahaja.
+                      Produk digital yang baik lahir dari bagian yang terstruktur dan antarmuka yang mudah dipahami, dengan fokus utama pada pemecahan masalah nyata.
                     </p>
                   </div>
                   <div className="about-narrative">
                     <p>
-                      Saya Charless, mahasiswa S1 Teknik Informatika di Universitas Tarumanagara dengan antusiasme tinggi pada rekayasa web full-stack, pengembangan aplikasi mobile, dan pengolahan data.
+                      Saya Charless, mahasiswa Teknik Informatika yang mengutamakan ketelitian dalam mengolah data maupun membangun aplikasi web dan mobile yang rapi dan fungsional.
                     </p>
                     <p>
-                      Melalui peran sebagai asisten laboratorium dan pengembang proyek perangkat lunak, saya terbiasa menerjemahkan kebutuhan logis menjadi antarmuka responsif dan alur data yang terstruktur. Saya memprioritaskan kode yang bersih, mudah dipelihara, dan berorientasi pada pemecahan masalah nyata.
+                      Melalui peran sebagai Asisten Dosen dan pengalaman berorganisasi di kampus, saya terbiasa untuk berkomunikasi efektif dan berkontribusi secara adaptif di berbagai peran tim.
                     </p>
                   </div>
                   <div className="about-pillars-grid">
@@ -767,14 +834,14 @@ export default function Home() {
                       <span className="pillar-num">02</span>
                       <div>
                         <strong>Data &amp; AI</strong>
-                        <p>Machine Learning &amp; SQL</p>
+                        <p>Python, ML &amp; SQL</p>
                       </div>
                     </div>
                     <div className="about-pillar-card">
                       <span className="pillar-num">03</span>
                       <div>
                         <strong>Akademik</strong>
-                        <p>Asisten Lab 3 Semester</p>
+                        <p>Menjadi Asisten Dosen</p>
                       </div>
                     </div>
                   </div>
@@ -837,8 +904,8 @@ export default function Home() {
                     <p>SMK Pelita IV · Jakarta, Indonesia</p>
                     <div className="edu-stats-grid">
                       <div className="edu-stat">
-                        <span>Bidang Fokus</span>
-                        <strong>Multimedia</strong>
+                        <span>Nilai Akhir</span>
+                        <strong>89.42</strong>
                       </div>
                       <div className="edu-stat">
                         <span>Status</span>
@@ -873,7 +940,7 @@ export default function Home() {
                         <div className="cert-icon">{cert.mark}</div>
                         <div className="cert-details">
                           <h4>{cert.title}</h4>
-                          <small>{cert.org} · Predikat: {cert.status}</small>
+                          <small>{cert.org} · {cert.status}</small>
                         </div>
                       </div>
                       <div className="cert-click-hint" title="Klik untuk melihat pratinjau sertifikat">
@@ -943,12 +1010,15 @@ export default function Home() {
       <footer className="site-footer">
         <div className="content">
           <div className="footer-content">
-            <div>
-              <strong>Charless</strong>
-              <p>Portofolio Teknik Informatika · Universitas Tarumanagara</p>
+            <div style={{ display: "flex", alignItems: "center", gap: "14px" }}>
+              <span className="brand-monogram">C</span>
+              <div>
+                <strong>Charless</strong>
+                <p>Web, Mobile &amp; Data · Jakarta, Indonesia</p>
+              </div>
             </div>
-            <div>
-              <small>© 2026 Charless. Hak cipta dilindungi.</small>
+            <div style={{ paddingRight: "52px" }}>
+              <small>© 2026 Charless · Crafted with passion</small>
             </div>
           </div>
         </div>
