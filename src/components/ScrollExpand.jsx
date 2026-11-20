@@ -223,7 +223,7 @@ const ScrollExpand = ({
           </div>
           {title ? (
             <div ref={titleRef} className="scroll-expand__title">
-              {title}
+              {typeof title === 'string' ? title : title}
             </div>
           ) : null}
           {scrollHint ? (

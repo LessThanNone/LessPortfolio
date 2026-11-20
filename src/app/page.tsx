@@ -3,6 +3,7 @@
 import { useState, useEffect } from "react";
 import ScrollExpand from "@/components/ScrollExpand";
 import AnimatedContent from "@/components/AnimatedContent";
+import SplitText from "@/components/SplitText";
 
 interface ProjectItem {
   num: string;
@@ -55,6 +56,26 @@ const projects: ProjectItem[] = [
     fullDesc: "Aplikasi mobile cross-platform berbasis Flutter dan Dart untuk layanan finansial asuransi. Menyediakan alur onboarding pengguna yang mulus, katalog polis digital terintegrasi API pembayaran, dan formulir pengajuan klaim berbasis kamera dan dokumen.",
     tags: ["Flutter", "Dart", "API Integration", "Mobile UI/UX"],
     link: "https://github.com/LessThanNone",
+  },
+  {
+    num: "05",
+    category: "web",
+    meta: "Full-Stack Development · 2026",
+    title: "StayRent — Property Rental Web Application",
+    desc: "Platform persewaan properti berbasis MERN stack dengan autentikasi berbasis peran (penyewa, pemilik, admin), pencarian & filter properti, manajemen booking, dan kontak WhatsApp langsung.",
+    fullDesc: "Platform web full-stack terintegrasi untuk persewaan properti dengan stack MERN (MongoDB, Express, React, Node.js). Dilengkapi autentikasi JWT multi-role untuk penyewa, pemilik properti, dan admin. Memiliki fitur pencarian & penyaringan properti interaktif, manajemen listing dan reservasi, daftar keinginan (wishlist), ulasan pengguna, upload gambar hunian, serta integrasi kontak langsung ke pemilik via WhatsApp.",
+    tags: ["React", "Node.js", "Express.js", "MongoDB", "Tailwind CSS", "JWT"],
+    link: "https://github.com/LessThanNone/StayRent",
+  },
+  {
+    num: "06",
+    category: "web",
+    meta: "Web Development Game · 2025",
+    title: "iClick — Click Speed Test Game",
+    desc: "Game uji kecepatan klik berbasis web dengan mode durasi 5, 10, dan 15 detik, pelacakan CPS real-time, klik bonus acak, papan peringkat pemain, serta efek suara & ripple interaktif.",
+    fullDesc: "Proyek pengembangan web pertama yang dibuat untuk penugasan mata kuliah Backend Development. Game pengukur kecepatan klik interaktif yang menyediakan pilihan durasi 5, 10, dan 15 detik. Menyajikan pelacakan statistik kecepatan klik per detik (CPS) secara real-time, sistem bonus multiplier acak, ranking skor pemain, serta animasi efek ripple visual dan audio responsif.",
+    tags: ["HTML", "CSS", "JavaScript", "Audio API", "Interactive UI"],
+    link: "https://github.com/KamingLo/iClick",
   },
 ];
 
@@ -280,7 +301,25 @@ export default function Home() {
           <ScrollExpand
             src="/hero.png"
             alt="Portofolio Charless"
-            title="Welcome"
+            title={
+              <SplitText
+                text="Welcome"
+                className="font-light tracking-tight"
+                effect="rise"
+                splitType="chars"
+                delay={120}
+                duration={2.2}
+                staggerFrom="start"
+                trigger="load"
+                hoverEffect="lift"
+                loop={false}
+                loopDelay={1.5}
+                mask={false}
+                threshold={0.1}
+                rootMargin="-100px"
+                textAlign="center"
+              />
+            }
             scrollHint="Scroll down untuk melihat"
             useWindowScroll
             startWidth={42}
@@ -294,9 +333,9 @@ export default function Home() {
             overlayScrim={0.65}
             enabled
           >
-            <div style={{ maxWidth: "780px", color: "#FAFAFC", padding: "0 20px" }}>
+            <div style={{ maxWidth: "700px", color: "#FAFAFC", padding: "0 20px" }}>
               <span className="eyebrow-tag" style={{ color: "#90FCF9", textShadow: "0 2px 8px rgba(0,0,0,0.5)" }}>
-                Portofolio 2026
+                Portofolio
               </span>
               <h2
                 style={{
@@ -310,7 +349,7 @@ export default function Home() {
                   textShadow: "0 4px 24px rgba(20, 6, 32, 0.9)",
                 }}
               >
-                Charless: Web Development &amp; Data Engineering
+                Web, Mobile Development, Data, &amp; AI
               </h2>
               <p
                 style={{
@@ -322,7 +361,7 @@ export default function Home() {
                   textShadow: "0 2px 14px rgba(0,0,0,0.7)",
                 }}
               >
-                Membangun solusi digital yang terukur, rapi, dan mudah diakses melalui perpaduan rekayasa front-end modern dan analisis data terstruktur.
+                Memadukan pengembangan teknologi modern dan data untuk menghadirkan solusi digital yang terstruktur, terukur, dan intuitif.
               </p>
               <div
                 style={{
@@ -356,12 +395,12 @@ export default function Home() {
           <section id="hero-profile" className="hero content">
             <div className="hero-layout">
               <AnimatedContent distance={40} direction="vertical" duration={0.9} ease="power3.out" threshold={0.15} stagger={0.1}>
-                <span className="eyebrow-tag">Portofolio 2026 · Web &amp; Data Engineering</span>
+                <span className="eyebrow-tag">Portofolio · Web, Mobile, Data &amp; AI</span>
                 <h1 className="hero-huge-display">
                   Membangun solusi digital yang <span>bermakna.</span>
                 </h1>
                 <p className="hero-lead">
-                  Mahasiswa Teknik Informatika Universitas Tarumanagara yang berfokus pada arsitektur web modern, aplikasi mobile, dan pengolahan data terukur. Menggabungkan ketelitian algoritma dengan antarmuka yang intuitif.
+                  Mahasiswa Teknik Informatika Universitas Tarumanagara yang berpengalaman dalam pengembangan web serta aplikasi mobile, dengan minat kuat di bidang data science. Bertujuan untuk menyatukan data dengan pengalaman pengguna yang nyaman.
                 </p>
                 <div className="hero-cta-group">
                   <a className="btn-filled-plum" href="#projects">Jelajahi Proyek</a>
@@ -376,8 +415,8 @@ export default function Home() {
                     <strong>S1 Teknik Informatika</strong>
                   </div>
                   <div className="hero-meta-item">
-                    <small>Universitas</small>
-                    <strong>Tarumanagara</strong>
+                    <small>Kampus</small>
+                    <strong>Universitas Tarumanagara</strong>
                   </div>
                   <div className="hero-meta-item">
                     <small>Indeks Prestasi Kumulatif</small>
@@ -503,7 +542,7 @@ export default function Home() {
                 <AnimatedContent distance={35} direction="vertical" duration={0.75} ease="power3.out" threshold={0.12}>
                   <article className="org-card">
                     <h4>Tarumanagara English Club (TEC)</h4>
-                    <div className="org-role">Anggota Aktif UKM · 2024 - Sekarang</div>
+                    <div className="org-role">Anggota UKM · 2024 - Sekarang</div>
                     <ul>
                       <li>Koordinator Divisi Perlengkapan dan Konsumsi pada National English Competition 2025.</li>
                       <li>Anggota operasional pada kepanitiaan TEC Anniversary dan penyelenggaraan TOEFL Institutional Test.</li>
