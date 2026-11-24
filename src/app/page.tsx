@@ -13,6 +13,8 @@ interface ProjectItem {
   title: string;
   desc: string;
   fullDesc: string;
+  problem: string;
+  solution: string;
   tags: string[];
   link?: string;
   demoUrl?: string;
@@ -26,7 +28,12 @@ const projects: ProjectItem[] = [
     meta: "Full-Stack MERN · 2026",
     title: "StayRent — Property Rental Web Application",
     desc: "Platform persewaan properti berbasis MERN stack dengan autentikasi berbasis peran (penyewa, pemilik, admin), pencarian & filter properti, manajemen booking, dan kontak WhatsApp langsung.",
-    fullDesc: "Platform web full-stack terintegrasi untuk persewaan properti dengan stack MERN (MongoDB, Express, React, Node.js). Dilengkapi autentikasi JWT multi-role untuk penyewa, pemilik properti, dan admin. Memiliki fitur pencarian & penyaringan properti interaktif, manajemen listing dan reservasi, daftar keinginan (wishlist), ulasan pengguna, upload gambar hunian, serta integrasi kontak langsung ke pemilik via WhatsApp.",
+    fullDesc:
+      "Platform web full-stack terintegrasi berbasis MERN stack (MongoDB, Express, React, Node.js) yang menghubungkan penyewa, pemilik properti, dan administrator dalam satu ekosistem persewaan hunian.",
+    problem:
+      "Pencarian hunian sewa secara konvensional kerap memakan waktu karena informasi properti yang tersebar, kurang transparan, dan bergantung pada perantara berbiaya tinggi. Di sisi lain, pemilik properti kesulitan mengelola daftar hunian, memantau ketersediaan, serta mencatat pemesanan secara terpusat dan akurat.",
+    solution:
+      "Membangun platform terpusat dengan autentikasi JWT multi-role (penyewa, pemilik, admin) yang dilengkapi pencarian serta filter lokasi, harga, dan fasilitas. Sistem ini juga menyediakan manajemen listing dan reservasi, unggah foto properti, wishlist, ulasan, serta kontak langsung ke pemilik via WhatsApp tanpa perantara.",
     tags: ["React", "Node.js", "Express.js", "MongoDB", "Tailwind CSS", "JWT"],
     link: "https://github.com/LessThanNone/StayRent",
     demoUrl: "https://youtu.be/eySfyn-7pJc?si=wC-N2kz-Ij0nLvVj",
@@ -34,11 +41,16 @@ const projects: ProjectItem[] = [
   {
     num: "02",
     category: "web",
-    meta: "Software Development As Front End· 2026",
-    title: "ALTAR — App For Teaching Assistant",
-    desc: "Mengembangkan antarmuka responsif untuk asisten dosen dengan React, Next.js, TypeScript, dan Tailwind CSS; mencakup QR check-in, presensi, jadwal mengajar, dan kelas.",
-    fullDesc: "Aplikasi portal operasional asisten dosen Universitas Tarumanagara. Mengintegrasikan autentikasi dosen dan asisten dosen, scanner QR kehadiran kelas real-time, manajemen absensi responsif, serta penugasan jadwal asisten dosen.",
-    tags: ["Next.js", "React", "TypeScript", "Tailwind CSS", "REST API"],
+    meta: "Software Development As Front End · 2026",
+    title: "ALTAR - App For Teaching Assistant",
+    desc: "Mengembangkan portal operasional asisten dosen berbasis PWA menggunakan Next.js, TypeScript, dan Tailwind CSS dengan fitur OAuth, QR check-in presensi, jadwal mengajar, dan pengajuan KP.",
+    fullDesc:
+      "Aplikasi portal operasional asisten dosen Universitas Tarumanagara berbasis Progressive Web App (PWA) menggunakan Next.js, TypeScript, dan Tailwind CSS untuk memusatkan administrasi serta aktivitas mengajar.",
+    problem:
+      "Sebelumnya, koordinasi asisten dosen, mulai dari absensi, pengecekan jadwal, ketersediaan ruangan kosong, hingga pengajuan kelas pengganti (KP), menumpuk dalam satu grup WhatsApp. Informasi yang bercampur dan akses yang kurang praktis saat berpindah kelas membuat data penting sulit dilacak dan rawan terlewat.",
+    solution:
+      "Membangun aplikasi web responsif berbasis PWA yang dapat dipasang langsung di perangkat mobile untuk akses cepat di kelas. Sistem ini terintegrasi dengan autentikasi Google OAuth, proteksi rute middleware, QR check-in presensi real-time, pemantauan jadwal serta ruangan kosong, dan pengajuan KP.",
+    tags: ["Next.js", "TypeScript", "Tailwind CSS", "PWA", "OAuth"],
     link: "https://github.com/KamingLo/altar-frontend",
     demoUrl: "https://drive.google.com/file/d/1R6YssACYFXfmvHnww3DrAMFHGXfhFJgR/view?usp=sharing",
   },
@@ -46,10 +58,15 @@ const projects: ProjectItem[] = [
     num: "03",
     category: "web",
     meta: "Front-End Programming · 2025",
-    title: "Trainity — Digital Learning Platform",
-    desc: "Membangun platform pembelajaran berbasis Next.js: autentikasi, katalog kursus, pembelian kelas, pelacakan progres, sertifikat, dan panel admin materi.",
-    fullDesc: "Platform web edukasi modular untuk kursus teknologi. Mengimplementasikan modul video belajar interaktif, dashboard analitik progres siswa, sistem penerbitan sertifikat digital, dan CMS admin untuk penambahan modul materi baru.",
-    tags: ["Next.js", "React", "Tailwind CSS", "TypeScript"],
+    title: "Trainity - Digital Learning Platform",
+    desc: "Membangun platform pembelajaran berbasis Next.js dan TypeScript yang mencakup autentikasi, katalog dan pembelian kelas, pelacakan progres, sertifikat PDF otomatis, serta panel admin materi.",
+    fullDesc:
+      "Platform pembelajaran digital berbasis Next.js dan TypeScript yang mengintegrasikan area belajar pengguna, manajemen kursus admin, autentikasi, serta penerbitan sertifikat otomatis.",
+    problem:
+      "Proses pembelajaran daring sering kali terhambat ketika katalog kursus, transaksi kelas, pemantauan progres belajar, dan penerbitan sertifikat dikelola secara terpisah. Di sisi lain, pengelola materi membutuhkan panel terpusat untuk mengatur konten dan pengguna tanpa alur manual yang rumit.",
+    solution:
+      "Membangun platform terintegrasi menggunakan Next.js, TypeScript, NextAuth, dan MongoDB yang mencakup autentikasi pengguna, katalog serta pembelian kelas, pelacakan progres belajar, dan panel admin materi. Sistem ini juga dilengkapi notifikasi email serta pembuatan sertifikat PDF secara otomatis.",
+    tags: ["Next.js", "React", "TypeScript", "MongoDB", "NextAuth", "CSS Modules"],
     link: "https://github.com/KamingLo/TrainityNext",
     demoUrl: "https://youtu.be/v_6A5_IvTBU?si=7HTsFuWUbFEuDnBP",
   },
@@ -57,10 +74,15 @@ const projects: ProjectItem[] = [
     num: "04",
     category: "web",
     meta: "Back-End Programming · 2024",
-    title: "iClick — Click Speed Test Game",
-    desc: "Game uji kecepatan klik berbasis web dengan mode durasi 5, 10, dan 15 detik, pelacakan CPS real-time, klik bonus acak, papan peringkat pemain, serta efek suara & ripple interaktif.",
-    fullDesc: "Proyek pengembangan web pertama yang dibuat untuk penugasan mata kuliah Backend Development. Game pengukur kecepatan klik interaktif yang menyediakan pilihan durasi 5, 10, dan 15 detik. Menyajikan pelacakan statistik kecepatan klik per detik (CPS) secara real-time, sistem bonus multiplier acak, ranking skor pemain, serta animasi efek ripple visual dan audio responsif.",
-    tags: ["HTML", "CSS", "JavaScript", "Audio API", "Interactive UI"],
+    title: "iClick - Click Speed Test Game",
+    desc: "Game uji kecepatan klik berbasis web menggunakan Node.js, Express.js, MongoDB, dan WebSocket dengan mode klik mouse atau spasi, papan peringkat, sistem pertemanan, serta fitur chat real-time.",
+    fullDesc:
+      "Proyek pengembangan web back-end pertama yang menghadirkan permainan uji kecepatan klik interaktif berbasis Node.js, Express.js, MongoDB, dan WebSocket dengan dukungan mode tamu maupun akun terdaftar.",
+    problem:
+      "Permainan uji kecepatan klik di browser umumnya bersifat statis dan solo tanpa penyimpanan skor permanen maupun interaksi antarpemain. Dari sisi teknis, dibutuhkan arsitektur back-end yang mampu mengelola sesi akun, papan peringkat, serta pertukaran pesan secara real-time dalam satu aplikasi web.",
+    solution:
+      "Membangun aplikasi web dengan Express.js, MongoDB, dan WebSocket yang menyediakan mode klik mouse serta spasi dalam pilihan durasi 5, 10, dan 15 detik. Dilengkapi autentikasi akun untuk menyimpan skor ke papan peringkat global, sistem pertemanan, chat privat maupun publik secara real-time, serta efek audio.",
+    tags: ["Node.js", "Express.js", "MongoDB", "WebSocket", "EJS", "JavaScript"],
     link: "https://github.com/KamingLo/iClick",
     demoUrl: "https://youtu.be/Cf8Y80dZcJo?si=lO1v1NChzOVsbwZ0",
   },
@@ -68,10 +90,15 @@ const projects: ProjectItem[] = [
     num: "05",
     category: "mobile",
     meta: "Mobile Programming · 2025",
-    title: "Learra — Mobile Insurance Application",
-    desc: "Mengembangkan aplikasi asuransi Flutter dengan autentikasi dan integrasi API untuk pembelian polis, pembayaran premi, dan pengajuan klaim.",
-    fullDesc: "Aplikasi mobile cross-platform berbasis Flutter dan Dart untuk layanan finansial asuransi. Menyediakan alur onboarding pengguna yang mulus, katalog polis digital terintegrasi API pembayaran, dan formulir pengajuan klaim berbasis kamera dan dokumen.",
-    tags: ["Flutter", "Dart", "API Integration", "Mobile UI/UX"],
+    title: "Learra - Mobile Insurance Application",
+    desc: "Mengembangkan aplikasi asuransi berbasis Flutter yang terhubung dengan backend Express.js dan MongoDB untuk pembelian polis, pengecekan status polis, pembayaran premi, serta pengajuan dan pemantauan klaim.",
+    fullDesc:
+      "Aplikasi mobile cross-platform berbasis Flutter dan Dart yang terhubung dengan backend Express.js dan MongoDB untuk memudahkan pengelolaan layanan asuransi secara mandiri.",
+    problem:
+      "Pengelolaan layanan asuransi secara konvensional sering kali menyulitkan nasabah karena proses pembelian polis, pengecekan status pertanggungan, hingga pengajuan klaim yang memerlukan prosedur panjang dan berkas fisik. Selain itu, pengguna kerap kesulitan memantau perkembangan status klaim secara transparan.",
+    solution:
+      "Membangun aplikasi mobile yang menyatukan seluruh layanan asuransi dalam satu alur praktis, mulai dari pemilihan dan pembelian polis, pengecekan detail status polis, hingga pembayaran premi secara aman. Pengguna juga dapat mengajukan klaim dengan mengunggah dokumen langsung dari ponsel serta memantau progresnya.",
+    tags: ["Flutter", "Dart", "Express.js", "MongoDB", "REST API"],
     link: "https://github.com/kaminglo/learra",
     demoUrl: "https://youtu.be/BrQjxDMiyUM?si=FfNFlrkYqdE4SUhN",
   },
@@ -80,8 +107,13 @@ const projects: ProjectItem[] = [
     category: "data",
     meta: "Data Mining · 2026",
     title: "Pemodelan Prediksi Kepuasan Kerja Karyawan",
-    desc: "Membangun model prediktif employee attrition dengan Gradient Boosting Regression dan smoothed bootstrap oversampling, mengevaluasi MAE, RMSE, R-Squared, serta feature importance.",
-    fullDesc: "Penelitian mendalam menggunakan MATLAB untuk memprediksi tingkat retensi karyawan. Pendekatan mencakup penanganan data tidak seimbang dengan teknik smoothed bootstrap oversampling, perbandingan metrik kinerja algoritma (MAE, RMSE, R²), dan identifikasi faktor penentu kepuasan pada tiap divisi kerja.",
+    desc: "Membangun model prediktif tingkat kepuasan kerja karyawan pada divisi sales, technical, dan support menggunakan Gradient Boosting Regression serta smoothed bootstrap oversampling, lengkap dengan evaluasi MAE, RMSE, R-Squared, dan feature importance.",
+    fullDesc:
+      "Penelitian pemodelan data mining menggunakan MATLAB untuk memprediksi tingkat kepuasan kerja karyawan (satisfaction level) pada divisi sales, technical, dan support sebagai upaya menekan risiko employee attrition.",
+    problem:
+      "Penurunan kepuasan kerja memicu tingginya employee attrition yang merugikan operasional perusahaan, sementara evaluasi lewat survei berkala kurang memberikan gambaran yang objektif. Secara teknis, ketidakseimbangan distribusi data antardivisi juga berisiko membuat model prediktif menjadi bias terhadap kelompok mayoritas.",
+    solution:
+      "Menerapkan encoding fitur kategorik dan teknik smoothed bootstrap oversampling untuk menyeimbangkan data latih secara natural, lalu melatih model Gradient Boosting Regression terpisah pada divisi sales, technical, dan support. Performa model dievaluasi melalui MAE, RMSE, dan R-Squared disertai pemetaan feature importance tiap divisi.",
     tags: ["MATLAB", "Gradient Boosting", "Bootstrap Oversampling", "Feature Importance"],
     reportUrl: "Laporan UAS Data Mining Gradient Boosting Regression.pdf",
   },
@@ -300,6 +332,7 @@ export default function Home() {
       )}
 
       {/* Detail Project Modal */}
+      {/* Detail Project Modal */}
       {selectedProject && (
         <div
           className="detail-modal-backdrop"
@@ -307,7 +340,10 @@ export default function Home() {
           role="dialog"
           aria-modal="true"
         >
-          <div className="detail-modal-card" onClick={(e) => e.stopPropagation()}>
+          <div
+            className="detail-modal-card project-modal-wide"
+            onClick={(e) => e.stopPropagation()}
+          >
             <button
               className="modal-close-btn"
               onClick={() => setSelectedProject(null)}
@@ -320,7 +356,19 @@ export default function Home() {
               <span className="tag-pill">{selectedProject.meta}</span>
             </div>
             <h3>{selectedProject.title}</h3>
-            <p>{selectedProject.fullDesc}</p>
+            <p className="project-modal-intro">{selectedProject.fullDesc}</p>
+
+            <div className="project-ps-grid">
+              <div className="project-ps-box problem">
+                <span className="project-ps-label">Masalah yang Diselesaikan</span>
+                <p>{selectedProject.problem}</p>
+              </div>
+              <div className="project-ps-box solution">
+                <span className="project-ps-label">Solusi yang Dihasilkan</span>
+                <p>{selectedProject.solution}</p>
+              </div>
+            </div>
+
             <div style={{ display: "flex", flexWrap: "wrap", gap: "6px", marginBottom: "24px" }}>
               {selectedProject.tags.map((t) => (
                 <span key={t} className="tag-pill">
