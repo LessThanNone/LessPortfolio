@@ -213,7 +213,9 @@ export default function Home() {
       setIsScrolled(window.scrollY > 20);
 
       const introThreshold = window.innerHeight * 1.1;
-      setIsIntroComplete(window.scrollY > introThreshold);
+      const introDone = window.scrollY > introThreshold;
+      setIsIntroComplete(introDone);
+      document.documentElement.classList.toggle("intro-active", !introDone);
       const expandSpan = window.innerHeight * 1.3; // sesuai scrollDistance={1.3}
       const expandProgress = Math.min(Math.max(window.scrollY / expandSpan, 0), 1);
 
@@ -256,8 +258,12 @@ export default function Home() {
       }
     };
 
+    handleScroll();
     window.addEventListener("scroll", handleScroll, { passive: true });
-    return () => window.removeEventListener("scroll", handleScroll);
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+      document.documentElement.classList.remove("intro-active");
+    };
   }, []);
 
   useEffect(() => {
@@ -296,13 +302,6 @@ export default function Home() {
 
   return (
     <>
-      {/* Reading Progress Bar */}
-      <div
-        className="scroll-progress-bar"
-        style={{ width: `${scrollProgress}%` }}
-        aria-hidden="true"
-      />
-
       {/* Back To Top */}
       <button
         onClick={scrollToTop}
@@ -556,6 +555,12 @@ export default function Home() {
             </a>
           </div>
         </div>
+        {/* Reading Progress Bar */}
+        <div
+          className="scroll-progress-bar"
+          style={{ width: `${scrollProgress}%` }}
+          aria-hidden="true"
+        />
       </header>
 
       <main id="beranda">
@@ -789,7 +794,7 @@ export default function Home() {
             <div className="experience-cols">
               <div>
                 <h3 className="exp-group-title">Pengalaman Asisten Dosen: Universitas Tarumanagara</h3>
-                {[
+{[
                   {
                     role: "Asisten Dosen: Big Data",
                     period: "Agustus 2026 - Desember 2026",

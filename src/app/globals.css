@@ -45,6 +45,52 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 
+:root {
+  --sb-track: var(--primary-surface);
+  --sb-border: var(--border-card);
+  --sb-thumb: var(--ink);
+}
+
+html.intro-active {
+  --sb-track: #181625;
+  --sb-border: transparent;
+  --sb-thumb: rgba(148, 72, 188, 0.5);
+}
+
+::-webkit-scrollbar {
+  width: 16px;
+  height: 16px;
+}
+
+::-webkit-scrollbar-track {
+  background-color: var(--sb-track);
+  border-left: 1px solid var(--sb-border);
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: var(--sb-thumb);
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='10' viewBox='0 0 24 24'%3E%3Ccircle cx='12' cy='6.2' r='4.1' fill='%23FAFAFC'/%3E%3Ccircle cx='17.5' cy='10.2' r='4.1' fill='%23FAFAFC'/%3E%3Ccircle cx='15.4' cy='16.7' r='4.1' fill='%23FAFAFC'/%3E%3Ccircle cx='8.6' cy='16.7' r='4.1' fill='%23FAFAFC'/%3E%3Ccircle cx='6.5' cy='10.2' r='4.1' fill='%23FAFAFC'/%3E%3Ccircle cx='12' cy='12' r='1.8' fill='%23480355'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-clip: content-box;
+  border: 3px solid transparent;
+  border-radius: 9999px;
+}
+
+::-webkit-scrollbar-thumb:hover,
+::-webkit-scrollbar-thumb:active {
+  background-color: var(--link);
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='10' viewBox='0 0 24 24'%3E%3Ccircle cx='12' cy='6.2' r='4.1' fill='%23E6D4F2'/%3E%3Ccircle cx='17.5' cy='10.2' r='4.1' fill='%23E6D4F2'/%3E%3Ccircle cx='15.4' cy='16.7' r='4.1' fill='%23E6D4F2'/%3E%3Ccircle cx='8.6' cy='16.7' r='4.1' fill='%23E6D4F2'/%3E%3Ccircle cx='6.5' cy='10.2' r='4.1' fill='%23E6D4F2'/%3E%3Ccircle cx='12' cy='12' r='1.8' fill='%239448BC'/%3E%3C/svg%3E");
+}
+
+/* Fallback warna untuk browser Firefox */
+@supports not selector(::-webkit-scrollbar) {
+  html {
+    scrollbar-width: thin;
+    scrollbar-color: var(--sb-thumb) var(--sb-track);
+  }
+}
+
 a {
   color: inherit;
   text-decoration: none;
@@ -52,12 +98,12 @@ a {
 
 /* Reading Progress Bar */
 .scroll-progress-bar {
-  position: fixed;
-  top: 0;
+  position: absolute;
+  bottom: -1px;
   left: 0;
-  height: 3px;
-  background: linear-gradient(90deg, var(--link), var(--accent-1), var(--accent-2));
-  z-index: 100;
+  height: 2.5px;
+  background-color: var(--link);
+  pointer-events: none;
   transition: width 0.1s ease-out;
 }
 
@@ -610,18 +656,17 @@ a {
 }
 
 .exp-card {
-  background: var(--faint);
+  background: var(--surface-raised);
   border: 1px solid var(--border-card);
   border-radius: 12px;
   padding: 24px;
   margin-bottom: 16px;
-  transition: border-color 0.25s ease, transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.25s ease;
+  transition: border-color 0.25s ease, transform 0.25s ease;
 }
 
 .exp-card:hover {
-  border-color: rgba(148, 72, 188, 0.35);
-  transform: translateY(-2px);
-  box-shadow: 0 10px 24px -8px rgba(72, 3, 85, 0.08);
+  border-color: rgba(72, 3, 85, 0.15);
+  transform: translateY(-1px);
 }
 
 .exp-header {
@@ -642,12 +687,12 @@ a {
 
 .exp-badge {
   font-size: 11px;
-  font-weight: 500;
+  font-weight: 600;
   padding: 4px 10px;
   border-radius: 6px;
-  background: rgba(144, 252, 249, 0.18);
-  border: 1px solid rgba(99, 180, 209, 0.25);
-  color: var(--ink);
+  background: rgba(148, 72, 188, 0.08);
+  border: 1px solid rgba(148, 72, 188, 0.2);
+  color: var(--link);
   white-space: nowrap;
 }
 
