@@ -580,8 +580,13 @@ export default function Home() {
           />
 
           <div className="header-cta-wrap">
-            <a className="btn-filled-plum header-cta-btn" href="#contact">
-              Hubungi Saya
+            <a
+              className="btn-filled-plum header-cta-btn"
+              href="/CV Charless.pdf"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Lihat CV
             </a>
           </div>
         </div>
@@ -697,31 +702,16 @@ export default function Home() {
                 <p className="hero-lead">
                   Mahasiswa Teknik Informatika Universitas Tarumanagara yang berpengalaman dalam pengembangan web serta aplikasi mobile, dengan minat kuat di bidang data science. Bertujuan untuk menyatukan data dengan pengalaman pengguna yang nyaman.
                 </p>
-                <div className="hero-cta-group">
-                  <a
-                    className="btn-filled-plum"
-                    href="/CV Charless.pdf"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    <span>Lihat CV</span>
-                    <svg
-                      width="14"
-                      height="14"
-                      viewBox="0 0 24 24"
-                      fill="none"
-                      stroke="currentColor"
-                      strokeWidth="2"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      aria-hidden="true"
+                  <div className="hero-cta-group">
+                    <a
+                      className="btn-filled-plum"
+                      href="/CV Charless.pdf"
+                      target="_blank"
+                      rel="noopener noreferrer"
                     >
-                      <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
-                      <polyline points="15 3 21 3 21 9" />
-                      <line x1="10" y1="14" x2="21" y2="3" />
-                    </svg>
-                  </a>
-                </div>
+                      Lihat CV
+                    </a>
+                  </div>
               </AnimatedContent>
 
               <AnimatedContent distance={50} direction="vertical" duration={1} ease="power3.out" delay={0.2} threshold={0.1}>
