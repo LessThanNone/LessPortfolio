@@ -187,6 +187,34 @@ const certificates: CertificateItem[] = [
   },
 ];
 
+function BlueMoonIcon() {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width="32"
+      height="32"
+      viewBox="0 0 32 32"
+      aria-hidden="true"
+    >
+      <defs>
+        <radialGradient id="brand-petal-gradient" cx="16" cy="16" r="14" gradientUnits="userSpaceOnUse">
+          <stop offset="25%" stopColor="#8EE3F5" />
+          <stop offset="90%" stopColor="#567BB5" />
+        </radialGradient>
+      </defs>
+      <g fill="url(#brand-petal-gradient)">
+        <circle cx="16" cy="8.4" r="6" />
+        <circle cx="23.23" cy="13.65" r="6" />
+        <circle cx="20.47" cy="22.15" r="6" />
+        <circle cx="11.53" cy="22.15" r="6" />
+        <circle cx="8.77" cy="13.65" r="6" />
+      </g>
+      <circle cx="16" cy="16" r="3.2" fill="#FAFAFC" />
+      <circle cx="16" cy="16" r="1.5" fill="#480355" />
+    </svg>
+  );
+}
+
 export default function Home() {
   const [copied, setCopied] = useState(false);
   const [showNotice, setShowNotice] = useState(false);
@@ -523,7 +551,9 @@ export default function Home() {
       <header className={`site-header ${isIntroComplete ? "visible" : ""} ${isScrolled ? "scrolled" : ""}`}>
         <div className="nav-wrap">
           <a className="brand" href="#beranda" aria-label="Beranda Charless">
-            <div className="brand-monogram">C</div>
+            <div className="brand-monogram">
+              <BlueMoonIcon />
+            </div>
             <div className="brand-text">CHARLESS</div>
           </a>
 
@@ -1064,7 +1094,9 @@ export default function Home() {
         <div className="content">
           <div className="footer-content">
             <div style={{ display: "flex", alignItems: "center", gap: "14px" }}>
-              <span className="brand-monogram">C</span>
+              <span className="brand-monogram">
+                <BlueMoonIcon />
+              </span>
               <div>
                 <strong>Charless</strong>
                 <p>Web, Mobile &amp; Data · Jakarta, Indonesia</p>

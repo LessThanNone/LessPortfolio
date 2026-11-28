@@ -26,8 +26,8 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "Charless - Portofolio Mahasiswa Teknik Informatika",
-  description: "Portofolio Charless: Web Development, Mobile Development, dan Data Science.",
+  title: "Charless - Portofolio",
+  description: "Portofolio Charless — Web, Mobile Development, Data, & AI",
 };
 
 export default function RootLayout({
